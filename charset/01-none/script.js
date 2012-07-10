@@ -1,0 +1,1 @@
+document.getElementById('js-external').innerHTML = '✰✰✰ ' + document.getElementById('js-external').innerHTML + ' ✰✰✰';
