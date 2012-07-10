@@ -1,17 +1,17 @@
 "use strict";
 
 console.log('Loading module4.js');
-document.getElementById('console').innerHTML += 'Loading module4.js\n';
+echo('Loading module4.js');
 
 define(function(module1){
 	
 	console.log('Executing module4.js');
-	document.getElementById('console').innerHTML += 'Executing module4.js\n';
+	echo('Executing module4.js');
 	
 	return {
 		speak: function(message) {
 			console.log('module4.js: ' + message);
-			document.getElementById('console').innerHTML += 'module4.js: ' + message + '\n';
+			echo('module4.js: ' + message);
 			return 'ok';
 		}
 	};

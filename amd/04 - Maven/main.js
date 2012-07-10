@@ -1,12 +1,12 @@
 "use strict";
 
 console.log('Loading main.js');
-document.getElementById('console').innerHTML += 'Loading main.js\n';
+echo('Loading main.js');
 
 define(['module1', 'module2', 'module3', 'module4'], function(module1, module2, module3, module4){
 	
 	console.log('Executing main.js');
-	document.getElementById('console').innerHTML += 'Executing main.js\n';
+	echo('Executing main.js');
 	
 	return {};
 });
