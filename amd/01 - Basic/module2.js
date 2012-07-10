@@ -1,3 +1,5 @@
+"use strict";
+
 console.log('Loading module2.js');
 echo('Loading module2.js');
 
