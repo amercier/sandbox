@@ -9,7 +9,7 @@ define(['../Function/bind'], function(){
 	var prepareString = "a"[0] != "a",
 	    toObject = function (o) {
 			if (o == null) { // this matches both null and undefined
-				throw new TypeError(); // TODO message
+				throw new TypeError();
 			}
 			// If the implementation doesn't support by-index access of
 			// string characters (ex. IE < 7), split the string

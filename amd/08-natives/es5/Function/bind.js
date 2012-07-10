@@ -24,10 +24,9 @@ define([], function(){
 			var target = this;
 			// 2. If IsCallable(Target) is false, throw a TypeError exception.
 			if (typeof target != "function")
-				throw new TypeError(); // TODO message
+				throw new TypeError();
 			// 3. Let A be a new (possibly empty) internal list of all of the
 			//   argument values provided after thisArg (arg1, arg2 etc), in order.
-			// XXX slicedArgs will stand in for "A" if used
 			var args = slice.call(arguments, 1); // for normal call
 			// 4. Let F be a new native ECMAScript object.
 			// 9. Set the [[Prototype]] internal property of F to the standard
@@ -97,26 +96,20 @@ define([], function(){
 				}
 	
 			};
-			// XXX bound.length is never writable, so don't even try
 			//
 			// 16. The length own property of F is given attributes as specified in
 			//   15.3.5.1.
-			// TODO
 			// 17. Set the [[Extensible]] internal property of F to true.
-			// TODO
 			// 18. Call the [[DefineOwnProperty]] internal method of F with
 			//   arguments "caller", PropertyDescriptor {[[Value]]: null,
 			//   [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]:
 			//   false}, and false.
-			// TODO
 			// 19. Call the [[DefineOwnProperty]] internal method of F with
 			//   arguments "arguments", PropertyDescriptor {[[Value]]: null,
 			//   [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]:
 			//   false}, and false.
-			// TODO
 			// NOTE Function objects created using Function.prototype.bind do not
 			// have a prototype property.
-			// XXX can't delete it in pure-js.
 			
 			echo('Done binding');
 			
