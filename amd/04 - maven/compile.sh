@@ -1,1 +1,0 @@
-node ../lib/r-2.0.2.js -o name=main out=main.min.js baseUrl=.
