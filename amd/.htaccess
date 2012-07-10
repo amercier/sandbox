@@ -1,11 +1,10 @@
 
+# Charset: UTF-8
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .css
+AddCharset UTF-8 .js
 
-# JavaScript has various MIME types
-ExpiresByType application/x-javascript access
-ExpiresByType application/javascript   access
-ExpiresByType text/ecmascript          access
-ExpiresByType text/javascript          access
-
+ExpiresDefault modification
 
 # Remove ETags
 FileETag None
