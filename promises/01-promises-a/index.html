@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Promises/A</title>
+		<script>var require = {paths: {domReady: "../lib/domReady"}}</script>
+		<script data-main="main.js" src="../lib/require-jquery-2.0.4.js"></script>
+		<style>
+			body {
+				font-family: sans-serif;
+				margin: 1em auto;
+				max-width: 600px;
+				padding: 1em;
+				box-sizing: border-box;
+			}
+			form {
+				line-height: 2;
+			}
+			input[type="text"] {
+				width: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Promises/A</h1>
+		<form id="vcloud-admin-form">
+			<label>vCloud URL <input id="vcloud-username" type="text" value="amercier" /></label><br />
+			<label>vCloud URL <input id="vcloud-url" type="text" value="https://10.170.233.136/api" /></label><br />
+			<label>vCloud token <input id="vcloud-token" type="text" /></label><br />
+			<input type="submit" value="OK" />
+		</form>
+		<pre id="console"></pre>
+	</body>
+</html>
