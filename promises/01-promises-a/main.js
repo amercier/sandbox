@@ -1,24 +1,19 @@
-
-define(['jquery', 'q', 'domReady!'], function($, Q) {
+define(['jquery', 'q', '../lib/echo', 'domReady!'], function($, Q, echo) {
 	
 	var idRegExp = /.*\/([^\/]+)$/;
 	
-	var username, vcloudUrl, vcloudToken;
-	
-	function vCloudGet(url, callback) {
+	function vCloudGet(url, options, callback) {
 		var deferred = Q.defer();
-		$.ajax(vcloudUrl + url, {
-			headers: {'x-vcloud-authorization': vcloudToken}
-		})
-		.done(function (result) {
+		var xhr = $.ajax(url, options)
+		.done(function(result) {
 			try {
-				deferred.resolve(callback(result));
+				deferred.resolve(callback(result, xhr));
 			}
 			catch(error) {
 				deferred.reject(error);
 			}
 		})
-		.fail(function (xhr, textStatus, errorThrown) {
+		.fail(function(xhr, textStatus, errorThrown) {
 			var error = new Error("Ajax request to the vCloud API failed.");
 			error.textStatus = textStatus;
 			error.errorThrown = errorThrown;
@@ -28,64 +23,127 @@ define(['jquery', 'q', 'domReady!'], function($, Q) {
 	}
 	
 	/**
+	 * Authenticate
+	 */
+	function getAuthenticationToken(session, password) {
+		console.log('Retrieving authentication token...');
+		echo('Retrieving authentication token...');
+		return vCloudGet(session.url + '/login', {
+			headers: {
+				'Authorization': 'Basic ' + window.btoa(session.username + '@' + session.organization + ':' + password)
+			}},
+			function(result, xhr) {
+				var token = xhr.getResponseHeader('x-vcloud-authorization');
+				console.log('Retrieved authentication token: ' + token);
+				echo('Retrieved authentication token: ' + token);
+				return $.extend(session, {token: token});
+			}
+		);
+	}
+	
+	/**
 	 * Get the current organization id
 	 * @return {Promise}
 	 */
-	function getCurrentOrganizationId() {
-		return vCloudGet('/org', function (result) {
-			//throw new Error('test error 1');
-			return $(result).find('Org').attr('href').replace(idRegExp, '$1');
-		});
+	function getCurrentOrganizationId(session) {
+		console.log('Retrieving current organization id...');
+		echo('Retrieving current organization id...');
+		return vCloudGet(session.url + '/org', {
+			headers: {
+				'x-vcloud-authorization': session.token
+			}},
+			function (result) {
+				var organizationId = $(result).find('Org').attr('href').replace(idRegExp, '$1');
+				console.log('Retrieved current organization id: ' + organizationId);
+				echo('Retrieved current organization id: ' + organizationId);
+				return $.extend(session, {organizationId:organizationId});
+			});
 	}
 	
 	/**
 	 * Get a user id
 	 * @return {Promise}
 	 */
-	function getUserId(organizationId) {
-		return vCloudGet('/admin/org/' + organizationId, function (result) {
-			//throw new Error('test error 2');
-			return $(result).find('UserReference[name="' + username + '"]').attr('href').replace(idRegExp, '$1');
-		});
+	function getUserId(session) {
+		console.log('Retrieving user id...');
+		echo('Retrieving user id...');
+		return vCloudGet(session.url + '/admin/org/' + session.organizationId, {
+			headers: {
+				'x-vcloud-authorization': session.token
+			}},
+			function (result) {
+				var userId = $(result).find('UserReference[name="' + session.username + '"]').attr('href').replace(idRegExp, '$1');
+				console.log('Retrieved user id: ' + userId);
+				echo('Retrieved user id: ' + userId);
+				return $.extend(session, {userId:userId});
+			});
 	}
 	
 	/**
 	 * Get a user id
 	 * @return {Promise}
 	 */
-	function getUserRoleId(userId) {
-		return vCloudGet('/admin/user/' + userId, function (result) {
-			//throw new Error('test error 3');
-			return $(result).find('Role').attr('href').replace(idRegExp, '$1');
-		});
+	function getUserRoleId(session) {
+		console.log('Retrieving role id...');
+		echo('Retrieving role id...');
+		return vCloudGet(session.url + '/admin/user/' + session.userId, {
+			headers: {
+				'x-vcloud-authorization': session.token
+			}},
+			function (result) {
+				var roleId = $(result).find('Role').attr('href').replace(idRegExp, '$1');
+				console.log('Retrieved role id: ' + roleId);
+				echo('Retrieved role id: ' + roleId);
+				return $.extend(session, {roleId:roleId});
+			});
 	}
 	
 	/**
 	 * Get a user id
 	 * @return {Promise}
 	 */
-	function isRoleAdmin(roleId) {
-		return vCloudGet('/admin/role/' + roleId, function (result) {
-			//throw new Error('test error 4');
-			return $(result).find('RightReference[href$="/384"]').length == 1;
-		});
+	function isRoleAdmin(session) {
+		console.log('Retrieving role rights...');
+		echo('Retrieving role rights...');
+		return vCloudGet(session.url + '/admin/role/' + session.roleId, {
+			headers: {
+				'x-vcloud-authorization': session.token
+			}},
+			function (result) {
+				var isAdmin = $(result).find('RightReference[href$="/384"]').length == 1;
+				console.log('Retrieved role rights: ' + isAdmin);
+				echo('Retrieved role rights: ' + isAdmin);
+				return $.extend(session, {isAdmin: isAdmin});
+			});
 	}
 	
+	
+	
+	/**
+	 * UI
+	 */
 	$('#vcloud-admin-form').submit(function(event) {
 		event.preventDefault();
-		
-		username    = $('#vcloud-username').val();
-		vcloudUrl   = $('#vcloud-url').val();
-		vcloudToken = $('#vcloud-token').val();
-		
-		getCurrentOrganizationId()
+		$('#console').empty();
+		getAuthenticationToken({
+					url         : $('#vcloud-url').val(),
+					organization: $('#vcloud-organization').val(),
+					username    : $('#vcloud-username').val()
+				}, 
+				$('#vcloud-password').val()
+			)
+			.then(getCurrentOrganizationId)
 			.then(getUserId)
 			.then(getUserRoleId)
 			.then(isRoleAdmin)
-			.then(function(isAdmin) {
-				console.log('isAdmin', isAdmin);
+			.then(function(session) {
+				console.log('isAdmin ? ' + session.isAdmin);
+				echo('isAdmin ? ' + session.isAdmin);
+				console.log('Session object', session);
 			}, function(error) {
+				echo(error);
 				console.warn('Caught error', error);
+				throw error;
 			})
 			.end();
 	});
