@@ -1,0 +1,18 @@
+
+body {
+	font: 13px Arial, Helvetica, sans-serif;
+	box-sizing: border-box;
+	margin: 0 auto;
+	max-width: 600px;
+	padding: 20px;
+}
+
+h1 {
+	font-size: 50px;
+	margin-top: 0;
+}
+
+li {
+	margin: 0.5em 0;
+}
+
