@@ -1,0 +1,83 @@
+<!doctype html>
+<html data-ng-app>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Data Binding with AngularJS</title>
+		<link rel="stylesheet" href="../../sandbox.css" />
+		<script>var require = {paths: {domReady: '../../lib/domReady', angular: '../../lib/angular-1.0.1'}}</script>
+		<script data-main="main.js" src="../../lib/require-2.0.2.js"></script>
+	</head>
+	<body data-ng-controller="vAppController">
+		<h1>Data Bindings with AngularJS</h1>
+		<ul>
+			<li><a href="..">« back</a></li>
+		</ul>
+		
+		<form id="data-bindings-controls">
+			<fieldset>
+				<legend>vApp</legend>
+				<p>
+					<label>ID: <input data-ng-model="vAppClone.id" /></label>
+				<p>
+				<p>
+					<label>Name: <input data-ng-model="vAppClone.name" /></label>
+				<p>
+					<label>
+						Status:
+						<select data-ng-model="vAppClone.status">
+							<option value="-1">The object could not be created</option>
+							<option value="0">The object is unresolved</option>
+							<option value="1">The object is resolved</option>
+							<option value="2">The object is deployed</option>
+							<option value="3">The object is suspended</option>
+							<option value="4">The object is powered on</option>
+							<option value="5">The object is waiting for user input</option>
+							<option value="6">The object is in an unknown state</option>
+							<option value="7">The object is in an unrecognized state</option>
+							<option value="8">The object is powered off</option>
+							<option value="9">The object is in an inconsistent state</option>
+							<option value="10">Children do not all have the same status</option>
+							<option value="11">Upload initiated, OVF descriptor pending</option>
+							<option value="12">Upload initiated, copying contents</option>
+							<option value="13">Upload initiated, disk contents pending</option>
+							<option value="14">Upload has been quarantined</option>
+							<option value="15">Upload quarantine period has expired</option>
+						</select>
+					</label>
+			</fieldset>
+			
+			<fieldset data-ng-disabled="!vApp.isRunning()">
+				<legend>Deployment patterns</legend>
+				<table>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th></th>
+					</tr>
+					<tr data-ng-repeat="deploymentPattern in vApp.deploymentPatterns">
+						<td><input type="number" data-ng-model="deploymentPattern.id" /></td>
+						<td><input type="text"   data-ng-model="deploymentPattern.name" /></td>
+						<td>
+							<button data-ng-click="removeDeploymentPattern(deploymentPattern)">×</button>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="number" data-ng-model="deploymentPattern.id" /></td>
+						<td><input type="text"   data-ng-model="deploymentPattern.name" /></td>
+						<td>
+							<button data-ng-click="addDeploymentPattern()">Add</button>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			
+		</form>
+		
+		<ul>
+			<li data-ng-repeat="deploymentPattern in vApp.deploymentPatterns">
+				<strong>#{{deploymentPattern.id}}:</strong> {{deploymentPattern.name}}
+			</li>
+		</ul>
+		
+	</body>
+</html>
