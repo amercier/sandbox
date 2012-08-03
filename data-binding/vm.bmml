@@ -1,0 +1,173 @@
+<mockup version="1.0" skin="sketch" measuredW="1024" measuredH="768" mockupW="1024" mockupH="768">
+  <controls>
+    <control controlID="0" controlTypeID="__group__" x="0" y="0" w="1024" h="768" measuredW="1024" measuredH="768" zOrder="0" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="1024" h="768" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="0">
+          <controlProperties>
+            <text>A%20Web%20Page%0Ahttp%3A//sandbox/data-binding/</text>
+            <verticalScrollbar>false</verticalScrollbar>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="__group__" x="15" y="168" w="254" h="553" measuredW="254" measuredH="553" zOrder="1" locked="false" isInGroup="0">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Tree" x="0" y="0" w="254" h="553" measuredW="300" measuredH="351" zOrder="0" locked="false" isInGroup="1">
+              <controlProperties>
+                <text>%3E%20Organization%20%231%0Av%20Organization%20%232%0A.%3E%20vApp%20%231%0A.v%20vApp%20%232%0A..%3E%20Network%20%231%0A..v%20Network%20%232%0A...-%20Network%20Service%20%231%0A...-%20Network%20Service%20%232%0A..._%20Network%20Service%20%233%0A..%3E%20Network%20%233%0A.%20-%20vm%20%231%0A.%20_%20vm%20%232%0A.%20-%20vm%20%233%0A.%3E%20vApp%20%233%0A%3E%20Organization%20%233</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Icon" x="86" y="194" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="1" locked="false" isInGroup="1">
+              <controlProperties>
+                <icon>SpinningIcon%7Cxsmall</icon>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::Icon" x="59" y="263" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="2" locked="false" isInGroup="1">
+              <controlProperties>
+                <icon>SpinningIcon%7Cxsmall</icon>
+              </controlProperties>
+            </control>
+            <control controlID="3" controlTypeID="com.balsamiq.mockups::VerticalScrollBar" x="238" y="0" w="-1" h="553" measuredW="16" measuredH="100" zOrder="3" locked="false" isInGroup="1"/>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Title" x="15" y="87" w="-1" h="-1" measuredW="777" measuredH="72" zOrder="2" locked="false" isInGroup="0">
+          <controlProperties>
+            <size>60</size>
+            <text>Data%20binding%20demo%20application</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="__group__" x="284" y="214" w="712" h="460" measuredW="712" measuredH="460" zOrder="3" locked="false" isInGroup="0">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="712" h="460" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="3"/>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::VerticalScrollBar" x="696" y="0" w="-1" h="460" measuredW="16" measuredH="100" zOrder="1" locked="false" isInGroup="3"/>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="862" y="683" w="-1" h="-1" measuredW="55" measuredH="27" zOrder="4" locked="false" isInGroup="0">
+          <controlProperties>
+            <text>Apply</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="932" y="683" w="-1" h="-1" measuredW="64" measuredH="27" zOrder="5" locked="false" isInGroup="0">
+          <controlProperties>
+            <text>Cancel</text>
+          </controlProperties>
+        </control>
+        <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="284" y="174" w="-1" h="-1" measuredW="166" measuredH="28" zOrder="6" locked="false" isInGroup="0">
+          <controlProperties>
+            <bold>true</bold>
+            <size>20</size>
+            <text>vm%20%231%20in%20vApp%20%232</text>
+          </controlProperties>
+        </control>
+        <control controlID="7" controlTypeID="com.balsamiq.mockups::Arrow" x="139" y="387" w="180" h="28" measuredW="150" measuredH="100" zOrder="7" locked="false" isInGroup="0">
+          <controlProperties>
+            <backgroundAlpha>1</backgroundAlpha>
+            <curvature>1</curvature>
+            <direction>bottom</direction>
+            <leftArrow>false</leftArrow>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="97" y="405" w="-1" h="-1" measuredW="42" measuredH="21" zOrder="8" locked="false" isInGroup="0">
+          <controlProperties>
+            <bold>true</bold>
+            <color>0</color>
+            <italic>false</italic>
+            <text>vm%20%231</text>
+            <underline>true</underline>
+          </controlProperties>
+        </control>
+        <control controlID="9" controlTypeID="com.balsamiq.mockups::Label" x="299" y="229" w="79" h="21" measuredW="44" measuredH="21" zOrder="9" locked="false" isInGroup="0">
+          <controlProperties>
+            <align>right</align>
+            <text>Name%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="10" controlTypeID="com.balsamiq.mockups::TextInput" x="378" y="226" w="100" h="-1" measuredW="50" measuredH="27" zOrder="10" locked="false" isInGroup="0">
+          <controlProperties>
+            <text>vm%20%231</text>
+          </controlProperties>
+        </control>
+        <control controlID="11" controlTypeID="com.balsamiq.mockups::Label" x="299" y="265" w="79" h="21" measuredW="47" measuredH="21" zOrder="11" locked="false" isInGroup="0">
+          <controlProperties>
+            <align>right</align>
+            <text>Status%3A</text>
+          </controlProperties>
+        </control>
+        <control controlID="12" controlTypeID="com.balsamiq.mockups::ComboBox" x="378" y="265" w="100" h="-1" measuredW="74" measuredH="48" zOrder="12" locked="false" isInGroup="0">
+          <controlProperties>
+            <text>Running%0APowered%20off</text>
+          </controlProperties>
+        </control>
+        <control controlID="13" controlTypeID="com.balsamiq.mockups::StickyNote" x="430" y="450" w="301" h="172" measuredW="109" measuredH="123" zOrder="13" locked="false" isInGroup="0">
+          <controlProperties>
+            <text>On%20click%20on%20Apply%20button%3A%0A%20%0A1.%20Form%20must%20be%20disabled%0A2.%20Tree%20must%20be%20updated%20%28loading%20state%29%0A3.%20Buttons%20must%20be%20disabled%0A%20%0ADuring%20model%20applying%20process%20%28%7E30sec%29</text>
+          </controlProperties>
+        </control>
+        <control controlID="14" controlTypeID="com.balsamiq.mockups::Arrow" x="602" y="603" w="270" h="95" measuredW="150" measuredH="100" zOrder="14" locked="false" isInGroup="0">
+          <controlProperties>
+            <curvature>-1</curvature>
+            <direction>top</direction>
+            <leftArrow>true</leftArrow>
+            <rightArrow>false</rightArrow>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="15" controlTypeID="com.balsamiq.mockups::Arrow" x="139" y="426" w="319" h="109" measuredW="150" measuredH="100" zOrder="15" locked="false" isInGroup="0">
+          <controlProperties>
+            <backgroundAlpha>0.25</backgroundAlpha>
+            <color>7880452</color>
+            <curvature>-1</curvature>
+            <leftArrow>true</leftArrow>
+            <rightArrow>false</rightArrow>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="16" controlTypeID="com.balsamiq.mockups::Arrow" x="404" y="313" w="54" h="206" measuredW="150" measuredH="100" zOrder="16" locked="false" isInGroup="0">
+          <controlProperties>
+            <backgroundAlpha>0.25</backgroundAlpha>
+            <color>7880452</color>
+            <curvature>-1</curvature>
+            <leftArrow>true</leftArrow>
+            <rightArrow>false</rightArrow>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="17" controlTypeID="com.balsamiq.mockups::Arrow" x="624" y="550" w="248" h="133" measuredW="150" measuredH="100" zOrder="17" locked="false" isInGroup="0">
+          <controlProperties>
+            <backgroundAlpha>0.25</backgroundAlpha>
+            <color>7880452</color>
+            <curvature>1</curvature>
+            <direction>top</direction>
+            <leftArrow>false</leftArrow>
+            <rightArrow>true</rightArrow>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="18" controlTypeID="com.balsamiq.mockups::StickyNote" x="550" y="224" w="180" h="102" measuredW="109" measuredH="123" zOrder="18" locked="false" isInGroup="0">
+          <controlProperties>
+            <text>On%20text%20change%3A%0A%20%0A1.%20Title%20must%20be%20updated</text>
+          </controlProperties>
+        </control>
+        <control controlID="19" controlTypeID="com.balsamiq.mockups::Arrow" x="415" y="196" w="151" h="97" measuredW="150" measuredH="100" zOrder="19" locked="false" isInGroup="0">
+          <controlProperties>
+            <backgroundAlpha>0.25</backgroundAlpha>
+            <color>7880452</color>
+            <curvature>-1</curvature>
+            <direction>top</direction>
+            <leftArrow>true</leftArrow>
+            <rightArrow>false</rightArrow>
+            <text/>
+          </controlProperties>
+        </control>
+        <control controlID="20" controlTypeID="com.balsamiq.mockups::Arrow" x="473" y="240" w="86" h="18" measuredW="150" measuredH="100" zOrder="20" locked="false" isInGroup="0">
+          <controlProperties>
+            <backgroundAlpha>1</backgroundAlpha>
+            <curvature>-1</curvature>
+            <direction>top</direction>
+            <leftArrow>false</leftArrow>
+            <text/>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>

@@ -3,12 +3,55 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Data Binding with AngularJS</title>
-		<link rel="stylesheet" href="../../sandbox.css" />
-		<script>var require = {paths: {domReady: '../../lib/domReady', angular: '../../lib/angular-1.0.1'}}</script>
-		<script data-main="main.js" src="../../lib/require-2.0.2.js"></script>
+		<link rel="stylesheet" href="../../lib/bootstrap/docs/assets/css/bootstrap.css" />
+		<link rel="stylesheet" href="../../lib/bootstrap/docs/assets/css/bootstrap-responsive.css" />
 	</head>
 	<body data-ng-controller="vAppController">
-		<h1>Data Bindings with AngularJS</h1>
+		<div class="container-fluid">
+		
+			<header class="row-fluid">
+				<div class="span12">
+					<div class="hero-unit">
+						<h1>Data Bindings demo application</h1>
+						<p>Using AngularJS</p>
+					</div>
+				</div>
+			</header>
+		
+			<div class="row-fluid">
+				<nav class="span3">
+					<ul class="nav nav-list well">
+						<li>
+							<a href="#"><i class="icon-repeat"></i> Reset</a>
+						</li>
+						<li class="divider"></li>
+						<li class="nav-header">Organizations</li>
+						<li>
+							<form class="input-append">
+								<input type="text" class="input-medium" /><button class="btn">Add</button>
+							</form>
+						</li>
+						<li class="nav-header">vApps</li>
+						<li>
+							<form class="input-append">
+								<input type="text" class="input-medium" /><button class="btn">Add</button>
+							</form>
+						</li>
+						<li class="nav-header">Deployment patterns</li>
+						<li>
+							<form class="input-append">
+								<input type="text" class="input-medium" /><button class="btn">Add</button>
+							</form>
+						</li>
+					</ul>
+				</nav>
+				<div class="span9">
+					<!--Body content-->
+				</div>
+			</div>
+		</div>
+	
+		
 		<ul>
 			<li><a href="..">« back</a></li>
 		</ul>
@@ -79,5 +122,7 @@
 			</li>
 		</ul>
 		
+		<script>var require = {paths: {domReady: '../../lib/domReady', angular: '../../lib/angular-1.0.1'}}</script>
+		<script data-main="main.js" src="../../lib/require-2.0.2.js"></script>
 	</body>
 </html>
