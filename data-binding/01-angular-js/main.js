@@ -28,6 +28,12 @@ define(['angular', '../model/Organization', '../model/OrganizationNetwork', '../
 		$scope.removeOrganization = function(organization) {
 			$scope.organizations.splice($scope.organizations.indexOf(organization), 1);
 		};
+		
+		// Add an organization after 3 seconds
+		setTimeout(function() {
+			$scope.organizations.push(new Organization('Randomly created'));
+			$scope.$apply();
+		}, 3000);
 	};
 	
 	OrganizationController = function OrganizationController($scope) {
