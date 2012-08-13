@@ -5,8 +5,48 @@
 		<title>Data Binding with AngularJS</title>
 		<link rel="stylesheet" href="../../lib/bootstrap/docs/assets/css/bootstrap.css" />
 		<link rel="stylesheet" href="../../lib/bootstrap/docs/assets/css/bootstrap-responsive.css" />
+		<style>
+			html {
+				height: 100%;
+			}
+			.container-fluid {
+				opacity: 0;
+				-webkit-transition: opacity .5s linear;
+				   -moz-transition: opacity .5s linear;
+				        transition: opacity .5s linear;
+			}
+			body::before {
+				content: 'Loading...';
+				background: url('../../img/loading-win8-32px.gif') no-repeat 50% top;
+				position: absolute;
+				height: 24px;
+				width: 128px;
+				left: 50%;
+				top: 50%;
+				margin-left: -64px;
+				margin-top: -32px;
+				text-align: center;
+				padding-top: 48px;
+			}
+			.ng-scope .container-fluid {
+				opacity: 1;
+			}
+			.ng-scope > body::before {
+				content: none;
+			}
+			nav.well {
+				padding: 8px 0;
+			}
+			.nav .nav-header {
+				padding-top: 6px;
+				padding-bottom: 9px;
+			}
+			.nav form.pull-right {
+				margin-bottom: 0;
+			}
+		</style>
 	</head>
-	<body data-ng-controller="vAppController">
+	<body>
 		<div class="container-fluid">
 		
 			<header class="row-fluid">
@@ -19,7 +59,39 @@
 			</header>
 		
 			<div class="row-fluid">
-				<nav class="span3">
+				<nav class="well span3">
+					<ul class="nav nav-list" data-ng-controller="CloudController">
+						<li>
+							<form class="pull-right control-group {{addOrganizationStatus}}" data-ng-submit="addOrganization()">
+								<span class="input-append">
+									<input data-ng-model="newOrganizationName" type="text" required="required" class="input-mini" /><button class="btn">Add</button>
+								</span>
+								<span class="help-inline">{{addOrganizationMessage}}</span>
+							</form>
+						</li>
+						<li class="nav-header">Organizations</li>
+						<li data-ng-repeat="organization in organizations">
+							<button class="btn btn-mini pull-right" data-ng-click="removeOrganization(organization)">Remove</button>
+							<a href="#">{{organization.name}}</a>
+							<ul class="nav nav-list" data-ng-controller="OrganizationController">
+								<li>
+									<form class="pull-right control-group {{addNetworkStatus}}" data-ng-submit="addNetwork()">
+										<span class="input-append">
+											<input data-ng-model="newNetworkName" type="text" required="required" class="input-mini" /><button class="btn">Add</button>
+										</span>
+										<span class="help-inline">{{addNetworkMessage}}</span>
+									</form>
+								</li>
+								<li class="nav-header">Networks</li>
+								<li data-ng-repeat="network in organization.networks">
+									<button class="btn btn-mini pull-right" data-ng-click="removeNetwork(network)">Remove</button>
+									<a href="#">{{network.name}}</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				
+					<!--
 					<ul class="nav nav-list well">
 						<li>
 							<a href="#"><i class="icon-repeat"></i> Reset</a>
@@ -44,18 +116,20 @@
 							</form>
 						</li>
 					</ul>
+					-->
 				</nav>
 				<div class="span9">
 					<!--Body content-->
 				</div>
 			</div>
+		
+			<ul>
+				<li><a href="..">« back</a></li>
+			</ul>
 		</div>
 	
 		
-		<ul>
-			<li><a href="..">« back</a></li>
-		</ul>
-		
+		<!-- 
 		<form id="data-bindings-controls">
 			<fieldset>
 				<legend>vApp</legend>
@@ -121,6 +195,7 @@
 				<strong>#{{deploymentPattern.id}}:</strong> {{deploymentPattern.name}}
 			</li>
 		</ul>
+		 -->
 		
 		<script>var require = {paths: {domReady: '../../lib/domReady', angular: '../../lib/angular-1.0.1'}}</script>
 		<script data-main="main.js" src="../../lib/require-2.0.2.js"></script>
