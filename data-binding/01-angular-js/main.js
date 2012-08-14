@@ -1,14 +1,51 @@
 
-var CloudController,
-    OrganizationController;
+var MainController,
+    NavigationController,
+    CloudController;
 
-define(['angular', '../model/Organization', '../model/OrganizationNetwork', '../model/VApp', '../model/DeploymentPattern'], function(angular, Organization, OrganizationNetwork, VApp, DeploymentPattern) {
+define(['jquery', 'require',
+        '../model/Organization', '../model/OrganizationNetwork', '../model/VApp', '../model/DeploymentPattern',
+        'bootstrap', 'domReady!'],
+function($, require, Organization, OrganizationNetwork, VApp, DeploymentPattern) {
 	
-	CloudController = function vAppController($scope) {
+	/**
+	 * Main controller
+	 */
+	MainController = function($scope) {
+		$scope.organizations = [];
+	};
+	
+	/**
+	 * Navigation controller
+	 */
+	NavigationController = function($scope) {
+		$scope.items = ['cloud', 'organization', 'network'];
+		$scope.selection = $scope.items[0];
+		/*
+		$scope.isCurrentView = function(view) {
+			return $scope.currentView == view;
+		};
+		*/
+		$scope.showMyCloudView = function() {
+			$scope.selection = $scope.items[0];
+			$('#mainTabs a[href="#cloud"]').tab('show');
+		};
+		$scope.showOrganizationView = function(organization) {
+			$scope.selection = $scope.items[1];
+			$('#mainTabs a[href="#organization"]').tab('show');
+		};
+		$scope.showNetworkView = function(network) {
+			$scope.selection = $scope.items[2];
+			$('#mainTabs a[href="#network"]').tab('show');
+		};
+	};
+	
+	/**
+	 * Cloud Controller (add/remove organizations)
+	 */
+	CloudController = function($scope) {
 		
 		$scope.newOrganizationName = '';
-		$scope.organizations = [];
-		
 		$scope.addOrganizationStatus = '';
 		$scope.addOrganizationMessage = '';
 		
@@ -31,10 +68,12 @@ define(['angular', '../model/Organization', '../model/OrganizationNetwork', '../
 		
 		// Add an organization after 3 seconds
 		setTimeout(function() {
-			$scope.organizations.push(new Organization('Randomly created'));
+			$scope.organizations.push(new Organization('Random Org'));
 			$scope.$apply();
-		}, 3000);
+		}, Math.random() * 2000 + 1000);
 	};
+	
+	/*
 	
 	OrganizationController = function OrganizationController($scope) {
 
@@ -111,4 +150,7 @@ define(['angular', '../model/Organization', '../model/OrganizationNetwork', '../
 		                });
 		              };
 	} */
+	
+	// Load AngularJS
+	require(['angular']);
 });

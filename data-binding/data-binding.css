@@ -1,0 +1,59 @@
+html {
+	height: 100%;
+}
+.container-fluid {
+	opacity: 0;
+	-webkit-transition: opacity .5s linear;
+	   -moz-transition: opacity .5s linear;
+	        transition: opacity .5s linear;
+}
+body::before {
+	content: 'Loading...';
+	background: url('../img/loading-win8-32px.gif') no-repeat 50% top;
+	position: absolute;
+	height: 24px;
+	width: 128px;
+	left: 50%;
+	top: 50%;
+	margin-left: -64px;
+	margin-top: -32px;
+	text-align: center;
+	padding-top: 48px;
+}
+.ng-scope .container-fluid {
+	opacity: 1;
+}
+.ng-scope > body::before {
+	content: none;
+}
+nav.well {
+	padding: 8px 0;
+}
+.nav .nav-header {
+	padding-top: 6px;
+	padding-bottom: 9px;
+}
+.nav form.pull-right {
+	margin-bottom: 0;
+}
+
+[class^="icon-cloud-"],
+[class*=" icon-cloud-"] {
+	width: 16px;
+	height: 16px;
+	line-height: 16px;
+	background-position: 0 0;
+}
+
+.icon-cloud-org                   { background-image: url(icons/org.png) }
+.icon-cloud-org-disabled          { background-image: url(icons/org-disabled.png) }
+.icon-cloud-vapp-disabled         { background-image: url(icons/vapp-disabled.png) }
+.icon-cloud-vapp-network-disabled { background-image: url(icons/vapp-network-disabled.png) }
+.icon-cloud-vapp-network          { background-image: url(icons/vapp-network.png) }
+.icon-cloud-vapp-new-disabled     { background-image: url(icons/vapp-new-disabled.png) }
+.icon-cloud-vapp-new              { background-image: url(icons/vapp-new.png) }
+.icon-cloud-vapp                  { background-image: url(icons/vapp.png) }
+.icon-cloud-vm-add-disabled       { background-image: url(icons/vm-add-disabled.png) }
+.icon-cloud-vm-add                { background-image: url(icons/vm-add.png) }
+.icon-cloud-vm-disabled           { background-image: url(icons/vm-disabled.png) }
+.icon-cloud-vm                    { background-image: url(icons/vm.png) }

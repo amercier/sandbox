@@ -1,50 +1,11 @@
 <!doctype html>
-<html data-ng-app>
+<html data-ng-app data-ng-controller="MainController">
 	<head>
 		<meta charset="UTF-8" />
 		<title>Data Binding with AngularJS</title>
 		<link rel="stylesheet" href="../../lib/bootstrap/docs/assets/css/bootstrap.css" />
 		<link rel="stylesheet" href="../../lib/bootstrap/docs/assets/css/bootstrap-responsive.css" />
-		<style>
-			html {
-				height: 100%;
-			}
-			.container-fluid {
-				opacity: 0;
-				-webkit-transition: opacity .5s linear;
-				   -moz-transition: opacity .5s linear;
-				        transition: opacity .5s linear;
-			}
-			body::before {
-				content: 'Loading...';
-				background: url('../../img/loading-win8-32px.gif') no-repeat 50% top;
-				position: absolute;
-				height: 24px;
-				width: 128px;
-				left: 50%;
-				top: 50%;
-				margin-left: -64px;
-				margin-top: -32px;
-				text-align: center;
-				padding-top: 48px;
-			}
-			.ng-scope .container-fluid {
-				opacity: 1;
-			}
-			.ng-scope > body::before {
-				content: none;
-			}
-			nav.well {
-				padding: 8px 0;
-			}
-			.nav .nav-header {
-				padding-top: 6px;
-				padding-bottom: 9px;
-			}
-			.nav form.pull-right {
-				margin-bottom: 0;
-			}
-		</style>
+		<link rel="stylesheet" href="../data-binding.css" />
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -58,146 +19,98 @@
 				</div>
 			</header>
 		
-			<div class="row-fluid">
+			<div class="row-fluid" data-ng-controller="NavigationController">
+			
+				<!-- Navigation
+				  ========================================================== -->
 				<nav class="well span3">
-					<ul class="nav nav-list" data-ng-controller="CloudController">
+					<ul class="nav nav-list">
 						<li>
-							<form class="pull-right control-group {{addOrganizationStatus}}" data-ng-submit="addOrganization()">
-								<span class="input-append">
-									<input data-ng-model="newOrganizationName" type="text" required="required" class="input-mini" /><button class="btn">Add</button>
-								</span>
-								<span class="help-inline">{{addOrganizationMessage}}</span>
-							</form>
+							<a href="#" data-ng-click="showMyCloudView()">Cloud</a>
 						</li>
 						<li class="nav-header">Organizations</li>
 						<li data-ng-repeat="organization in organizations">
-							<button class="btn btn-mini pull-right" data-ng-click="removeOrganization(organization)">Remove</button>
-							<a href="#">{{organization.name}}</a>
-							<ul class="nav nav-list" data-ng-controller="OrganizationController">
-								<li>
-									<form class="pull-right control-group {{addNetworkStatus}}" data-ng-submit="addNetwork()">
-										<span class="input-append">
-											<input data-ng-model="newNetworkName" type="text" required="required" class="input-mini" /><button class="btn">Add</button>
-										</span>
-										<span class="help-inline">{{addNetworkMessage}}</span>
-									</form>
-								</li>
+							<a href="#" data-ng-click="showOrganizationView(organization)">
+								<i class="icon-vcloud-org"></i>
+								{{organization.name}}
+							</a>
+							<ul class="nav nav-list">
 								<li class="nav-header">Networks</li>
 								<li data-ng-repeat="network in organization.networks">
-									<button class="btn btn-mini pull-right" data-ng-click="removeNetwork(network)">Remove</button>
-									<a href="#">{{network.name}}</a>
+									<a href="#" data-ng-click="showNetworkView(network)">
+										<i class="icon-vcloud-network"></i>
+										{{network.name}}
+									</a>
 								</li>
 							</ul>
 						</li>
 					</ul>
-				
-					<!--
-					<ul class="nav nav-list well">
-						<li>
-							<a href="#"><i class="icon-repeat"></i> Reset</a>
-						</li>
-						<li class="divider"></li>
-						<li class="nav-header">Organizations</li>
-						<li>
-							<form class="input-append">
-								<input type="text" class="input-medium" /><button class="btn">Add</button>
-							</form>
-						</li>
-						<li class="nav-header">vApps</li>
-						<li>
-							<form class="input-append">
-								<input type="text" class="input-medium" /><button class="btn">Add</button>
-							</form>
-						</li>
-						<li class="nav-header">Deployment patterns</li>
-						<li>
-							<form class="input-append">
-								<input type="text" class="input-medium" /><button class="btn">Add</button>
-							</form>
-						</li>
-					</ul>
-					-->
 				</nav>
+				
+				<!-- Main content
+				============================================================ -->
 				<div class="span9">
-					<!--Body content-->
+				
+					<!-- Tabs -->
+					<ul id="mainTabs" class="nav nav-tabs" style="display:none">
+						<li class="active"><a href="#cloud"        data-toggle="tab">Cloud</a></li>
+						<li               ><a href="#organization" data-toggle="tab">Organization</a></li>
+						<li               ><a href="#network"      data-toggle="tab">Network</a></li>
+					</ul>
+					
+					<!-- Tab content -->
+					<div class="tab-content">
+					
+						<!-- Cloud
+						==================================================== -->
+						<section id="cloud" class="tab-pane fade in active" data-ng-controller="CloudController">
+							<h1>Cloud</h1>
+							<h2>Organizations</h2>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Name</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="(i, organization) in organizations">
+										<td>{{i+1}}</td>
+										<td>{{organization.name}}</td>
+										<td>
+											<button class="btn" data-ng-click="showOrganizationView(organization)">Edit</button>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td class="control-group {{addOrganizationStatus}}">
+											<input data-ng-model="newOrganizationName" type="text" />
+											<span class="help-inline">{{addOrganizationMessage}}</span>
+										</td>
+										<td>
+											<button class="btn" data-ng-click="addOrganization()">Add</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</section>
+						<section id="organization" class="tab-pane fade in">
+							organization
+						</section>
+						<section id="network" class="tab-pane fade in">
+							network
+						</section>
+					</div>
 				</div>
 			</div>
 		
-			<ul>
-				<li><a href="..">« back</a></li>
-			</ul>
+			<p class="row">
+				<a class="btn pull-right" href="..">« back</a>
+			</p>
 		</div>
-	
 		
-		<!-- 
-		<form id="data-bindings-controls">
-			<fieldset>
-				<legend>vApp</legend>
-				<p>
-					<label>ID: <input data-ng-model="vAppClone.id" /></label>
-				<p>
-				<p>
-					<label>Name: <input data-ng-model="vAppClone.name" /></label>
-				<p>
-					<label>
-						Status:
-						<select data-ng-model="vAppClone.status">
-							<option value="-1">The object could not be created</option>
-							<option value="0">The object is unresolved</option>
-							<option value="1">The object is resolved</option>
-							<option value="2">The object is deployed</option>
-							<option value="3">The object is suspended</option>
-							<option value="4">The object is powered on</option>
-							<option value="5">The object is waiting for user input</option>
-							<option value="6">The object is in an unknown state</option>
-							<option value="7">The object is in an unrecognized state</option>
-							<option value="8">The object is powered off</option>
-							<option value="9">The object is in an inconsistent state</option>
-							<option value="10">Children do not all have the same status</option>
-							<option value="11">Upload initiated, OVF descriptor pending</option>
-							<option value="12">Upload initiated, copying contents</option>
-							<option value="13">Upload initiated, disk contents pending</option>
-							<option value="14">Upload has been quarantined</option>
-							<option value="15">Upload quarantine period has expired</option>
-						</select>
-					</label>
-			</fieldset>
-			
-			<fieldset data-ng-disabled="!vApp.isRunning()">
-				<legend>Deployment patterns</legend>
-				<table>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th></th>
-					</tr>
-					<tr data-ng-repeat="deploymentPattern in vApp.deploymentPatterns">
-						<td><input type="number" data-ng-model="deploymentPattern.id" /></td>
-						<td><input type="text"   data-ng-model="deploymentPattern.name" /></td>
-						<td>
-							<button data-ng-click="removeDeploymentPattern(deploymentPattern)">×</button>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="number" data-ng-model="deploymentPattern.id" /></td>
-						<td><input type="text"   data-ng-model="deploymentPattern.name" /></td>
-						<td>
-							<button data-ng-click="addDeploymentPattern()">Add</button>
-						</td>
-					</tr>
-				</table>
-			</fieldset>
-			
-		</form>
-		
-		<ul>
-			<li data-ng-repeat="deploymentPattern in vApp.deploymentPatterns">
-				<strong>#{{deploymentPattern.id}}:</strong> {{deploymentPattern.name}}
-			</li>
-		</ul>
-		 -->
-		
-		<script>var require = {paths: {domReady: '../../lib/domReady', angular: '../../lib/angular-1.0.1'}}</script>
-		<script data-main="main.js" src="../../lib/require-2.0.2.js"></script>
+		<script>var require = {paths: {domReady: '../../lib/domReady', angular: '../../lib/angular-1.0.1', bootstrap: '../../lib/bootstrap/docs/assets/js/bootstrap'}}</script>
+		<script data-main="main.js" src="../../lib/require-jquery-2.0.4.js"></script>
 	</body>
 </html>
