@@ -1,6 +1,11 @@
 html {
 	height: 100%;
 }
+
+body {
+	font: 13px Arial, Helvetica, sans-serif;
+}
+
 .container-fluid {
 	opacity: 0;
 	-webkit-transition: opacity .5s linear;
@@ -47,6 +52,8 @@ nav.well {
 
 .icon-cloud-org                   { background-image: url(icons/org.png) }
 .icon-cloud-org-disabled          { background-image: url(icons/org-disabled.png) }
+.icon-cloud-org-network-disabled  { background-image: url(icons/org-network-disabled.png) }
+.icon-cloud-org-network           { background-image: url(icons/org-network.png) }
 .icon-cloud-vapp-disabled         { background-image: url(icons/vapp-disabled.png) }
 .icon-cloud-vapp-network-disabled { background-image: url(icons/vapp-network-disabled.png) }
 .icon-cloud-vapp-network          { background-image: url(icons/vapp-network.png) }
@@ -57,3 +64,10 @@ nav.well {
 .icon-cloud-vm-add                { background-image: url(icons/vm-add.png) }
 .icon-cloud-vm-disabled           { background-image: url(icons/vm-disabled.png) }
 .icon-cloud-vm                    { background-image: url(icons/vm.png) }
+
+h2 {
+	font-size: 1em;
+	font-weight: bold;
+	color: #999;
+	text-transform: uppercase;
+}

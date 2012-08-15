@@ -32,10 +32,12 @@ function($, require, Organization, OrganizationNetwork, VApp, DeploymentPattern)
 		};
 		$scope.showOrganizationView = function(organization) {
 			$scope.selection = $scope.items[1];
+			$scope.organization = organization;
 			$('#mainTabs a[href="#organization"]').tab('show');
 		};
 		$scope.showNetworkView = function(network) {
 			$scope.selection = $scope.items[2];
+			$scope.network = network;
 			$('#mainTabs a[href="#network"]').tab('show');
 		};
 	};
@@ -66,15 +68,20 @@ function($, require, Organization, OrganizationNetwork, VApp, DeploymentPattern)
 			$scope.organizations.splice($scope.organizations.indexOf(organization), 1);
 		};
 		
-		// Add an organization after 3 seconds
+		// Add an organization after ~1 second
 		setTimeout(function() {
-			$scope.organizations.push(new Organization('Random Org'));
+			$scope.organizations.push(
+				new Organization('Random Org')
+					.addNetwork(new OrganizationNetwork('Internal Network'))
+					.addNetwork(new OrganizationNetwork('Internet'))
+			);
 			$scope.$apply();
-		}, Math.random() * 2000 + 1000);
+		}, Math.random() * 1000 + 500);
 	};
 	
-	/*
-	
+	/**
+	 * Organization Controller (add/remove networks)
+	 */
 	OrganizationController = function OrganizationController($scope) {
 
 		$scope.newNetworkName = '';
@@ -85,6 +92,8 @@ function($, require, Organization, OrganizationNetwork, VApp, DeploymentPattern)
 			try {
 				$scope.organization.addNetwork(new OrganizationNetwork($scope.newNetworkName));
 				$scope.newNetworkName = '';
+				$scope.addNetworkStatus = '';
+				$scope.addNetworkMessage = '';
 			}
 			catch(e) {
 				$scope.addNetworkStatus = 'error';

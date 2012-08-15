@@ -31,14 +31,14 @@
 						<li class="nav-header">Organizations</li>
 						<li data-ng-repeat="organization in organizations">
 							<a href="#" data-ng-click="showOrganizationView(organization)">
-								<i class="icon-vcloud-org"></i>
+								<i class="icon-cloud-org"></i> 
 								{{organization.name}}
 							</a>
 							<ul class="nav nav-list">
 								<li class="nav-header">Networks</li>
 								<li data-ng-repeat="network in organization.networks">
 									<a href="#" data-ng-click="showNetworkView(network)">
-										<i class="icon-vcloud-network"></i>
+										<i class="icon-cloud-org-network"></i>
 										{{network.name}}
 									</a>
 								</li>
@@ -95,9 +95,43 @@
 								</tbody>
 							</table>
 						</section>
-						<section id="organization" class="tab-pane fade in">
-							organization
+						
+						<!-- Organization
+						==================================================== -->
+						<section id="organization" class="tab-pane fade in" data-ng-controller="OrganizationController">
+							<h1>{{organization.name}}</h1>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Name</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="(i, network) in organization.networks">
+										<td>{{i+1}}</td>
+										<td>{{network.name}}</td>
+										<td>
+											<button class="btn" data-ng-click="showNetworkView(network)">Edit</button>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td class="control-group {{addNetworkStatus}}">
+											<input data-ng-model="newNetworkName" type="text" />
+											<span class="help-inline">{{addNetworkMessage}}</span>
+										</td>
+										<td>
+											<button class="btn" data-ng-click="addNetwork()">Add</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</section>
+						
+						
+						
 						<section id="network" class="tab-pane fade in">
 							network
 						</section>
