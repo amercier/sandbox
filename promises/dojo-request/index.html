@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Promises using Dojo 1.8's dojo/request module</title>
+		<link rel="stylesheet" href="../../lib/bootstrap/docs/assets/css/bootstrap.css" />
+		<link rel="stylesheet" href="../../lib/bootstrap/docs/assets/css/bootstrap-responsive.css" />
+		<link rel="stylesheet" href="../../sandbox.css" />
+	</head>
+	<body>
+		<div class="container">
+		
+			<!-- Header
+			================================================================ -->
+			<header class="row">
+				<div class="span12">
+					<div class="hero-unit">
+						<h1>Promises</h1>
+						<p>Using Dojo 1.8's dojo/request module</p>
+						<p>
+							<a class="btn btn-primary" href="https://github.com/kriskowal/q/">Project on Github</a>
+							<a class="btn"             href="http://documentup.com/kriskowal/q/">API Documentation</a>
+						</p>
+					</div>
+				</div>
+			</header>
+			
+			<!-- Breadcrumbs
+			================================================================ -->
+			<div class="row">
+				<div class="span12">
+					<ul class="breadcrumb">
+						<li>
+							<a href="../..">Sandbox</a>
+							<span class="divider">/</span>
+						</li>
+						<li>
+							<a href="..">Promises</a>
+							<span class="divider">/</span>
+						</li>
+						<li class="active">Using Dojo 1.8's dojo/request module</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="row">
+				
+				<!-- Form
+				============================================================ -->
+				<div class="span5">
+					<form id="vcloud-admin-form" class="form-horizontal">
+					
+						<div class="control-group">
+							<label class="control-label" for="vcloud-url">vCloud API URL</label>
+							<div class="controls">
+								<input id="vcloud-url" type="text" value="https://10.170.233.136/api" />
+								<p class="help-block">
+									If cross-origin, ensure that you're running Google Chrome with the <code>--disable-web-security</code> switch and you've accepted the SLL Certificate exception.
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="vcloud-organization">Organization</label>
+							<div class="controls">
+								<input id="vcloud-organization" type="text" value="ite" />
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="vcloud-username">Username</label>
+							<div class="controls">
+								<input id="vcloud-username" type="text" value="amercier" />
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="vcloud-password">Password</label>
+							<div class="controls">
+								<input id="vcloud-password" type="text" value="ecocenter" />
+							</div>
+						</div>
+						
+						<div class="form-actions">
+							<input class="btn btn-primary" type="submit" value="Start" />
+							<a class="btn" href="..">Cancel</a>
+						</div>
+						
+					</form>
+				</div>
+				
+				<!-- Console
+				============================================================ -->
+				<div class="span7">
+					<pre id="console"></pre>
+				</div>
+			
+			</div>
+		</div>
+		
+		<!-- Script
+		==================================================================== -->
+		<script>
+			var require = {paths: {
+				domReady:'../../lib/domReady',
+				echo    :'../../lib/echo',
+				dojo    :'../../lib/dojo'
+			}}
+		</script>
+		<script data-main="main.js" src="../../lib/require-jquery-2.0.4.js"></script>
+	</body>
+</html>

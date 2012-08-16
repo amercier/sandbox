@@ -1,5 +1,15 @@
 
-body {
+.container-sandbox {
+	max-width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.hero-unit {
+	margin-top: 1em;
+}
+
+.sandox-body {
 	font: 13px Arial, Helvetica, sans-serif;
 	box-sizing: border-box;
 	margin: 0 auto;
@@ -16,3 +26,6 @@ li {
 	margin: 0.5em 0;
 }
 
+#console:empty {
+	display: none;
+}

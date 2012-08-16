@@ -1,4 +1,4 @@
-define(['jquery', 'q', '../lib/echo', 'domReady!'], function($, Q, echo) {
+define(['jquery', 'q', 'echo', 'domReady!'], function($, Q, echo) {
 	
 	var idRegExp = /.*\/([^\/]+)$/;
 	
@@ -14,7 +14,7 @@ define(['jquery', 'q', '../lib/echo', 'domReady!'], function($, Q, echo) {
 			}
 		})
 		.fail(function(xhr, textStatus, errorThrown) {
-			var error = new Error("Ajax request to the vCloud API failed.");
+			var error = new Error('Ajax request to the vCloud API failed' + (textStatus ? ' (' + textStatus + ')' : '') + '.');
 			error.textStatus = textStatus;
 			error.errorThrown = errorThrown;
 			deferred.reject(error);
@@ -33,6 +33,7 @@ define(['jquery', 'q', '../lib/echo', 'domReady!'], function($, Q, echo) {
 				'Authorization': 'Basic ' + window.btoa(session.username + '@' + session.organization + ':' + password)
 			}},
 			function(result, xhr) {
+				throw new Error('Test error');
 				var token = xhr.getResponseHeader('x-vcloud-authorization');
 				console.log('Retrieved authentication token: ' + token);
 				echo('Retrieved authentication token: ' + token);
@@ -142,7 +143,7 @@ define(['jquery', 'q', '../lib/echo', 'domReady!'], function($, Q, echo) {
 				console.log('Session object', session);
 			}, function(error) {
 				echo(error);
-				console.warn('Caught error', error);
+				console.error('' + error);
 				throw error;
 			})
 			.end();
