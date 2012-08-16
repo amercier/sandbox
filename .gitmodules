@@ -1,3 +1,6 @@
 [submodule "lib/bootstrap"]
 	path = lib/bootstrap
 	url = https://github.com/amercier/bootstrap.git
+[submodule "lib/dojo"]
+	path = lib/dojo
+	url = https://github.com/dojo/dojo.git
