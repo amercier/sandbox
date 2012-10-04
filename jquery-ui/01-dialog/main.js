@@ -1,5 +1,5 @@
 
-requirejs.config({
+require.config({
 	baseUrl: '../lib',
 	shim: {
 		'jquery.ui.dialog'   : ['jquery', 'jquery.ui.core', 'jquery.ui.position', 'jquery.ui.widget'],
