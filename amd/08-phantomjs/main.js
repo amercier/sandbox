@@ -78,7 +78,8 @@ require = function() {
 requirejs.config({
 	paths: {
 		'domReady': '../../lib/domReady'
-	}
+	},
+	callback: phantom.exit
 });
 
 requirejs.onError = function(err, isOriginalError) {

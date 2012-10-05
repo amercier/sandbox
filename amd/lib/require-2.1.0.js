@@ -1046,7 +1046,7 @@ var requirejs, require, define;
                 //so that immediate calls to the defined callbacks
                 //for dependencies do not trigger inadvertent load
                 //with the depCount still being zero.
-                this.enabling = true; console.log('Enabling ' + this);
+                this.enabling = true;
 
                 //Enable each dependency
                 each(this.depMaps, bind(this, function (depMap, i) {
@@ -1080,7 +1080,7 @@ var requirejs, require, define;
                         }
                     }
 
-                    id = depMap.id; console.log('Enabling ' + id);
+                    id = depMap.id;
                     mod = registry[id];
 
                     //Skip special modules like 'require', 'exports', 'module'
