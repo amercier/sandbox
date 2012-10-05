@@ -9,7 +9,7 @@ if(!('log' in console)) {
 
 require = null;
 importScripts = phantom.injectJs;
-phantom.injectJs('require-2.1.0-phantomjs.js');
+phantom.injectJs('require-2.1.0-phantom.js');
 require.config({
 	paths: {
 		'domReady': '../../lib/domReady'
