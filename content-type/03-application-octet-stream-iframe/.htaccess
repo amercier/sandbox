@@ -1,0 +1,3 @@
+<Files "iframe.html">
+	AddType 'application/octet-stream' html
+</Files>
