@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Grunt Test Test Suite</title>
+
+  <!-- RequireJS -->
+  <script src="config.js"></script>
+  <script src="../libs/require/require.js"></script>
+
+  <!-- Load local QUnit (grunt requires v1.0.0 or newer). -->
+  <link rel="stylesheet" href="../libs/qunit/qunit.css" media="screen">
+  <script src="../libs/qunit/qunit.custom.js"></script>
+</head>
+ 
+<body>
+		<div id="qunit"></div>
+    <script>
+      QUnit.config.autostart = false;
+      require.debug && console.log('Started running JSSL test suite');
+      require(['tests/jssl/suite'/*, 'tests/debug'*/], function() {
+        QUnit.start();
+        require.debug && console.log('Finished running JSSL test suite');
+        module = function(name) {
+          throw new Error('Can\'t use module("' + name + '") outside test suite (causes PhantomJS incompatibility)')
+        }
+        test = function(name) {
+          throw new Error('Can\'t use test("' + name + '") outside test suite (causes PhantomJS incompatibility)')
+        }
+        asyncTest = function(name) {
+          throw new Error('Can\'t use asyncTest("' + name + '") outside test suite (causes PhantomJS incompatibility)')
+        }
+      });
+    </script>
+</body>
+</html>

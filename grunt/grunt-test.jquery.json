@@ -1,0 +1,29 @@
+{
+  "name": "grunt-test",
+  "title": "Grunt Testing",
+  "description": "The best jQuery plugin ever.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/amercier/grunt-test",
+  "author": {
+    "name": "Alexandre Mercier",
+    "email": "pro.alexandre.mercier@gmail.com",
+    "url": "http://amercier.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/amercier/grunt-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/amercier/grunt-test/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/amercier/grunt-test/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": []
+}
