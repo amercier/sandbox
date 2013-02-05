@@ -1,0 +1,52 @@
+<testsuite name="undefined" errors="0" failures="0" tests="185" time="0" >
+	<testcase classname="jssl/core/Class" name="Class definition" time="0.006" assertions="2">
+	</testcase>
+	<testcase classname="jssl/core/Class" name="Functional inheritance" time="0.005" assertions="8">
+	</testcase>
+	<testcase classname="jssl/core/Class" name="Inheritance checking" time="0.003" assertions="5">
+	</testcase>
+	<testcase classname="jssl/core/Class" name="Name checking" time="0.007" assertions="11">
+	</testcase>
+	<testcase classname="jssl/core/Class" name="Optional name" time="0.002" assertions="2">
+	</testcase>
+	<testcase classname="jssl/core/Class" name="Class name" time="0.003" assertions="9">
+	</testcase>
+	<testcase classname="jssl/core/Class" name="Static inheritance" time="0.005" assertions="4">
+	</testcase>
+	<testcase classname="jssl/core/Class" name="Static inheritance checking" time="0.115" assertions="33">
+	</testcase>
+	<testcase classname="jssl/core/Class" name="Static fields" time="0.003" assertions="7">
+	</testcase>
+	<testcase classname="jssl/core/Class" name="Static methods" time="0.005" assertions="10">
+	</testcase>
+	<testcase classname="jssl/core/Class" name="Mixins priority" time="0.005" assertions="4">
+	</testcase>
+	<testcase classname="jssl/core/Class" name="Mixins inheritance" time="0.002" assertions="4">
+	</testcase>
+	<testcase classname="jssl/core/Class" name="Class.getParents()" time="0.006" assertions="8">
+	</testcase>
+	<testcase classname="jssl/core/ClassDebug" name="Class name" time="0.005" assertions="9">
+	</testcase>
+	<testcase classname="jssl/core/ClassDebug" name="Static inheritance" time="0.004" assertions="4">
+	</testcase>
+	<testcase classname="jssl/core/Initializer" name="Initializers are run" time="0.003" assertions="6">
+	</testcase>
+	<testcase classname="jssl/core/Initializer" name="Non-function are not run" time="0.002" assertions="1">
+	</testcase>
+	<testcase classname="jssl/core/Initializer" name="Parent initializers are run" time="0.003" assertions="8">
+	</testcase>
+	<testcase classname="jssl/mixins/Capsule" name="Instanciation" time="0.006" assertions="12">
+	</testcase>
+	<testcase classname="jssl/mixins/Capsule" name="initXXX" time="0.002" assertions="2">
+	</testcase>
+	<testcase classname="jssl/mixins/Capsule" name="getXXX" time="0.002" assertions="2">
+	</testcase>
+	<testcase classname="jssl/mixins/Capsule" name="setXXX" time="0.003" assertions="4">
+	</testcase>
+	<testcase classname="jssl/mixins/Capsule" name="Options: default value" time="0.004" assertions="6">
+	</testcase>
+	<testcase classname="jssl/mixins/Capsule" name="Options: method names" time="0.006" assertions="18">
+	</testcase>
+	<testcase classname="jssl/mixins/Capsule" name="Options: validators" time="0.005" assertions="6">
+	</testcase>
+</testsuite>

@@ -1,0 +1,10 @@
+<testsuite name="undefined" errors="0" failures="0" tests="4" time="0" >
+	<testcase classname="jQuery#awesome" name="is chainable" time="0.008" assertions="1">
+	</testcase>
+	<testcase classname="jQuery#awesome" name="is awesome" time="0.002" assertions="1">
+	</testcase>
+	<testcase classname="jQuery.awesome" name="is awesome" time="0.001" assertions="1">
+	</testcase>
+	<testcase classname=":awesome selector" name="is awesome" time="0.005" assertions="1">
+	</testcase>
+</testsuite>
