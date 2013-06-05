@@ -1,6 +1,6 @@
 
 
-define(['domReady!'], function() {
+define(['jquery', 'domReady!'], function($) {
 	
 	$('#dynamic-run').click(function() {
 		

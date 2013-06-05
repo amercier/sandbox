@@ -99,12 +99,15 @@
 		<!-- Script
 		==================================================================== -->
 		<script>
-			var require = {paths: {
-				domReady:'../../lib/domReady',
-				echo    :'../../lib/echo',
-				q       :'../../lib/q'
-			}}
+			var require = {
+				paths: {
+					jquery  : '../../lib/jquery/jquery',
+					domReady: '../../lib/requirejs-domready/domReady',
+					echo    : '../../lib-local/echo',
+					q       : '../../lib/q/q'
+				}
+			};
 		</script>
-		<script data-main="main.js" src="../../lib/require-jquery-2.1.0.js"></script>
+		<script data-main="main.js" src="../../lib/requirejs/require.js"></script>
 	</body>
 </html>
