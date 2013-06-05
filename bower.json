@@ -8,6 +8,7 @@
     "requirejs": "~2.1.6",
     "jquery": "~1.8.0",
     "requirejs-domready": "~2.0.1",
-    "angular": "~1.0.7"
+    "angular": "~1.0.7",
+    "dojo": "~1.9.0"
   }
 }
