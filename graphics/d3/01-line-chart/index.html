@@ -116,7 +116,7 @@
               <span data-for="data-option-xaxis-subtick-size" class="pull-right"></span>
               <label class="control-label" for="data-option-xaxis-subtick-size">Sub-tick size</label>
               <div class="controls">
-                <input id="data-option-xaxis-subtick-size" class="chart-option" data-option="xAxisSubTickSize" type="range" value="3" min="0" max="10" step="1"/>
+                <input id="data-option-xaxis-subtick-size" class="chart-option" data-option="xAxisSubTickSize" type="range" value="4" min="0" max="10" step="1"/>
               </div>
             </div>
           </div>
@@ -136,7 +136,7 @@
               <span data-for="data-option-yaxis-tick-size" class="pull-right"></span>
               <label class="control-label" for="data-option-yaxis-tick-size">Tick size</label>
               <div class="controls">
-                <input id="data-option-yaxis-tick-size" class="chart-option" data-option="yAxisTickSize" type="range" value="6" min="0" max="10" step="1"/>
+                <input id="data-option-yaxis-tick-size" class="chart-option" data-option="yAxisTickSize" type="range" value="5" min="0" max="10" step="1"/>
               </div>
             </div>
           </div>
@@ -171,52 +171,10 @@
 
       <script src="../../../lib/jquery/jquery.js"></script>
       <script>
-        window.config = {
-            data : '../../data/continuous.csv',
-            code : 'line-chart',
-            container : $('.chart-container').get(0),
-            margin: {
-              top: 20,
-              right: 0,
-              bottom: 30,
-              left: 30
-            },
-            width: 700,
-            height: 200,
-            options: {}
-          };
-        $.ajax(config.data         , { dataType: 'text' }).done( function(text){ $('.chart-data'    ).text(text); } ).fail( function(){ $('.chart-data'    ).text('Error: can\'t load ' + data); } );
-        $.ajax(config.code + '.js' , { dataType: 'text' }).done( function(code){ $('.chart-code-js' ).text(code); } ).fail( function(){ $('.chart-code-js' ).text('Error: can\'t load ' + code + '.js'); } );
-        $.ajax(config.code + '.css', { dataType: 'text' }).done( function(code){ $('.chart-code-css').text(code); } ).fail( function(){ $('.chart-code-css').text('Error: can\'t load ' + code + '.css'); } );
-
-        function getValue($field) {
-            switch( $field.attr('type') ) {
-              case 'radio'   :
-              case 'checkbox': return $field.prop('checked');
-              default        : return $field.val();
-            }
-        }
-
-        $('[data-for]').each(function(i, span) {
-          var $span = $(span);
-          $( '#' + $span.data('for') ).change(function (e) {
-            $span.text( getValue($(e.target)) );
-          });
-        });
-
-        var initializing = true;
-        $('.chart-option').change(function(e) {
-            var $target = $(e.target);
-            window.config.options[$target.data('option')] = getValue($target);
-            if(!initializing) {
-              $(config.container).empty();
-              reloadChart();
-            }
-          })
-          .trigger('change');
-        initializing = false;
+        var data = '../../data/continuous.csv',
+            code = 'line-chart';
       </script>
-
+      <script src="../charts.js"></script>
       <script src="../../../lib/d3/d3.js"></script>
       <script src="line-chart.js"></script>
     </div>
