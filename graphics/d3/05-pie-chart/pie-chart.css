@@ -1,0 +1,29 @@
+
+.pie-slice-used {
+  fill: #8ab5e4;
+  /*stroke: #000;*/
+}
+
+.pie-slice-used.pie-slice-border {
+  stroke: #000;
+}
+
+.pie-slice-unused.pie-slice-border {
+  stroke: #fff;
+}
+
+.pie-slice-unused {
+  fill: #edf0f4;
+  fill: #e9eff6;
+}
+
+.pie-label {
+  font-size: 13px;
+}
+
+.pie-label-used {
+}
+
+.pie-label-unused {
+  fill: rgba(0,0,0,0.5);
+}
