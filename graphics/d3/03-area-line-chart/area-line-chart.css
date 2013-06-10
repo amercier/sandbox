@@ -1,0 +1,15 @@
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.line {
+  fill: none;
+  stroke: #0088cc;
+}
+
+.area {
+  fill: #c5e2f2;
+}
