@@ -247,10 +247,10 @@ try
     foreach ( $catalogRefs as $catalogRef )
     {
       $catalog = $service->createSDKObj( $catalogRef );
-      $catalogItemRefs = $catalog->getCatalogItemRefs( $options[OPTION_VAPP_TEMPLATE] );
-      if ( count($catalogItemRefs) === 1 )
+      $catalogItems = $catalog->getCatalogItems( $options[OPTION_VAPP_TEMPLATE] );
+      if ( count($catalogItems) === 1 )
       {
-        $catalogItemRef = $catalogItemRefs[0];
+        $catalogItem = $catalogItems[0];
         $found = true;
         break;
       }
@@ -263,22 +263,9 @@ try
 
     // vApp template
 
-    $found = false;
-    foreach ( $vdc->getVAppTemplateRefs( $options[OPTION_VAPP_TEMPLATE] ) as $vAppTemplateRef )
-    {
-      if ( $vAppTemplateRef->get_id() === $catalogItemRef->get_id() )
-      {
-        $found = true;
-        break;
-      }
-    }
+    $vAppTemplateRef = $catalogItem->getEntity();
 
-    if( !$found )
-    {
-      throw new Exception('Noooo! vApp Template "' . $options[OPTION_VAPP_TEMPLATE] . '" can\'t be found in Virtual Datacenter "' . $options[OPTION_DATACENTER] . '" ><\'');
-    }
-
-    echo 'OK' . ($options[OPTION_CATALOG] === false ? ' (found in Catalog "' . $catalogRef->get_name() . '")' : '') . "\n";
+    echo 'OK' . ($options[OPTION_CATALOG] === false ? ' (found in Catalog "' . $vAppTemplateRef->get_name() . '")' : '') . "\n";
   }
   catch ( Exception $e ) {
     echo 'NOK' . "\n";
