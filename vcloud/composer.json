@@ -1,0 +1,17 @@
+{
+  "repositories": [
+    {
+        "type": "composer",
+        "url": "https://packages.zendframework.com/"
+    },
+    {
+        "type": "pear",
+        "url": "http://pear.php.net"
+    }
+  ],
+  "require": {
+    "zendframework/zend-validator": "2.0.*",
+    "vmware/vcloud-sdk": "dev-5.1.2-alpha",
+    "pear-pear/HTTP_Request2": "*"
+  }
+}
