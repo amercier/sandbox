@@ -251,8 +251,6 @@ try
     {
       //$queryResultAdminVdcRecord = (Custom_VCloud_API_QueryResultAdminVdcRecordType)($queryResultAdminVdcRecord);
 
-      print_r( $queryResultAdminVdcRecord );
-
       return new VMWare_VCloud_OrganizationVirtualDatacenter
       (
         preg_replace(HREF_TO_ID, '$1', $queryResultAdminVdcRecord->get_href()),
@@ -407,8 +405,6 @@ try
     $providerVirtualDatacenters
   );
 
-  print_r($providerVirtualDatacenters);
-  echo "-------------------------\n";
   echo implode("\n", $output);
 }
 catch(Exception $e)
