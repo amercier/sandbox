@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 
 class VMware_VCloud_Exception extends Exception {
@@ -44,10 +45,10 @@ try
    * ---------------------------------------------------------------------------
    */
 
+  define('OPTION_HOST'         , 'Host');
   define('OPTION_USERNAME'     , 'Username');
   define('OPTION_PASSWORD'     , 'Password');
   define('OPTION_ORGANIZATION' , 'Organization');
-  define('OPTION_HOST'         , 'Host');
   define('OPTION_DATACENTER'   , 'vDC');
   define('OPTION_CATALOG'      , 'Catalog');
   define('OPTION_VAPP_TEMPLATE', 'vApp Template');
@@ -64,19 +65,19 @@ try
       ;
   }
 
-  $o = getopt('u:p:o:h:c:d:v:n:');
+  $o = getopt('h:o:u:p:c:d:v:n:');
   $options = array(
+      OPTION_HOST          => getOption($o, 'h'),
+      OPTION_ORGANIZATION  => getOption($o, 'o'),
       OPTION_USERNAME      => getOption($o, 'u'),
       OPTION_PASSWORD      => getOption($o, 'p'),
-      OPTION_ORGANIZATION  => getOption($o, 'o'),
-      OPTION_HOST          => getOption($o, 'h'),
       OPTION_CATALOG       => getOption($o, 'c'),
       OPTION_DATACENTER    => getOption($o, 'd'),
       OPTION_VAPP_TEMPLATE => getOption($o, 'v'),
       OPTION_NUMBER        => getOption($o, 'n', 1),
     );
 
-  foreach( array(OPTION_ORGANIZATION, OPTION_USERNAME, OPTION_PASSWORD, OPTION_HOST, OPTION_DATACENTER, OPTION_VAPP_TEMPLATE, OPTION_NUMBER) as $optionName ) {
+  foreach( array(OPTION_HOST, OPTION_ORGANIZATION, OPTION_USERNAME, OPTION_PASSWORD, OPTION_DATACENTER, OPTION_VAPP_TEMPLATE, OPTION_NUMBER) as $optionName ) {
     if( $options[$optionName] === false )
     {
       echo $optionName . ': ';
@@ -89,10 +90,10 @@ try
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   $validators = array(
+      OPTION_HOST          => array( new Zend\Validator\NotEmpty(), new Zend\Validator\Hostname(Zend\Validator\Hostname::ALLOW_DNS | Zend\Validator\Hostname::ALLOW_IP | Zend\Validator\Hostname::ALLOW_LOCAL) ),
+      OPTION_ORGANIZATION  => array( new Zend\Validator\NotEmpty(), new Zend\Validator\StringLength(array('max' => 64)) ),
       OPTION_USERNAME      => array( new Zend\Validator\NotEmpty(), new Zend\Validator\StringLength(array('max' => 64)) ),
       OPTION_PASSWORD      => array( new Zend\Validator\NotEmpty(), new Zend\Validator\StringLength(array('max' => 64)) ),
-      OPTION_ORGANIZATION  => array( new Zend\Validator\NotEmpty(), new Zend\Validator\StringLength(array('max' => 64)) ),
-      OPTION_HOST          => array( new Zend\Validator\NotEmpty(), new Zend\Validator\Hostname(Zend\Validator\Hostname::ALLOW_DNS | Zend\Validator\Hostname::ALLOW_IP | Zend\Validator\Hostname::ALLOW_LOCAL) ),
       OPTION_DATACENTER    => array( new Zend\Validator\NotEmpty(), new Zend\Validator\StringLength(array('max' => 64)) ),
       OPTION_CATALOG       => array( new Zend\Validator\NotEmpty(), new Zend\Validator\StringLength(array('max' => 64)) ),
       OPTION_VAPP_TEMPLATE => array( new Zend\Validator\NotEmpty(), new Zend\Validator\StringLength(array('max' => 64)) ),
