@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>dc.js - Dimensional Charting Javascript Library</title>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../../../lib/bootstrap/docs/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../charts.css"/>
+</head>
+<body>
+
+<script type="text/javascript" src="../../../lib/d3/d3.js"></script>
+<script type="text/javascript" src="../../../lib/crossfilter/crossfilter.js"></script>
+<script type="text/javascript" src="../dc.js"></script>
+
+
+<style>
+    #monthly-volume-chart g.y{
+        display: none;
+    }
+</style>
+
+<div class="container">
+
+<h2>dc.js - Dimensional Charting Javascript Library v<span id="version"></span> (unstable)</h2>
+
+<div class="row">
+    <div id="gain-loss-chart">
+        <strong>Days by Gain/Loss</strong>
+        <a class="reset" href="javascript:gainOrLossChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <div id="quarter-chart">
+        <strong>Quarters</strong>
+        <a class="reset" href="javascript:quarterChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <div id="day-of-week-chart">
+        <strong>Day of Week</strong>
+        <a class="reset" href="javascript:dayOfWeekChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <div id="fluctuation-chart">
+        <strong>Days by Fluctuation(%)</strong>
+        <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+        <a class="reset" href="javascript:fluctuationChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div id="monthly-move-chart">
+        <strong>Monthly Index Abs Move &amp; Volume/500,000 Chart</strong> (Blue Line: Avg Index, Green Line: Index
+        Fluctuation) <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+        <a class="reset" href="javascript:moveChart.filterAll();volumeChart.filterAll();dc.redrawAll();"
+           style="display: none;">reset</a>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div id="monthly-volume-chart">
+    </div>
+    <p class="muted pull-right" style="margin-right: 15px;">select a time range to zoom in</p>
+</div>
+
+<div class="row">
+    <div>
+        <div class="dc-data-count">
+            <span class="filter-count"></span> selected out of <span class="total-count"></span>
+            records |
+            <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+var gainOrLossChart = dc.pieChart("#gain-loss-chart");
+var fluctuationChart = dc.barChart("#fluctuation-chart");
+var quarterChart = dc.pieChart("#quarter-chart");
+var dayOfWeekChart = dc.rowChart("#day-of-week-chart");
+var moveChart = dc.compositeChart("#monthly-move-chart");
+var volumeChart = dc.barChart("#monthly-volume-chart");
+
+// set dc.js version in title
+d3.selectAll("#version").text(dc.version);
+
+// load data from a csv file
+d3.csv("../../data/discrete.csv", function (data) {
+            // since its a csv file we need to format the data a bit
+            var dateFormat = d3.time.format("%m/%d/%Y");
+            var numberFormat = d3.format(".2f");
+
+            data.forEach(function (e) {
+                e.dd = dateFormat.parse(e.date);
+                e.month = d3.time.month(e.dd); // pre-calculate month for better performance
+            });
+
+            // feed it through crossfilter
+            var ndx = crossfilter(data);
+            var all = ndx.groupAll();
+
+            var yearlyDimension = ndx.dimension(function (d) {
+                return d3.time.year(d.dd);
+            });
+            var yearlyPerformanceGroup = yearlyDimension.group().reduce(
+                    //add
+                    function (p, v) {
+                        ++p.count;
+                        p.absGain += +v.close - +v.open;
+                        p.fluctuation += Math.abs(+v.close - +v.open);
+                        p.sumIndex += (+v.open + +v.close) / 2;
+                        p.avgIndex = p.sumIndex / p.count;
+                        p.percentageGain = (p.absGain / p.avgIndex) * 100;
+                        p.fluctuationPercentage = (p.fluctuation / p.avgIndex) * 100;
+                        return p;
+                    },
+                    //remove
+                    function (p, v) {
+                        --p.count;
+                        p.absGain -= +v.close - +v.open;
+                        p.fluctuation -= Math.abs(+v.close - +v.open);
+                        p.sumIndex -= (+v.open + +v.close) / 2;
+                        p.avgIndex = p.sumIndex / p.count;
+                        p.percentageGain = (p.absGain / p.avgIndex) * 100;
+                        p.fluctuationPercentage = (p.fluctuation / p.avgIndex) * 100;
+                        return p;
+                    },
+                    //init
+                    function () {
+                        return {count: 0, absGain: 0, fluctuation: 0, fluctuationPercentage: 0, sumIndex: 0, avgIndex: 0, percentageGain: 0};
+                    }
+            );
+
+            var dateDimension = ndx.dimension(function (d) {
+                return d.dd;
+            });
+
+            // monthly index avg fluctuation in percentage
+            var moveMonths = ndx.dimension(function (d) {
+                return d.month;
+            });
+            var monthlyMoveGroup = moveMonths.group().reduceSum(function (d) {
+                return Math.abs(+d.close - +d.open);
+            });
+            var volumeByMonthGroup = moveMonths.group().reduceSum(function (d) {
+                return d.volume / 500000;
+            });
+            var indexAvgByMonthGroup = moveMonths.group().reduce(
+                    function (p, v) {
+                        ++p.days;
+                        p.total += (+v.open + +v.close) / 2;
+                        p.avg = Math.round(p.total / p.days);
+                        return p;
+                    },
+                    function (p, v) {
+                        --p.days;
+                        p.total -= (+v.open + +v.close) / 2;
+                        p.avg = p.days == 0 ? 0 : Math.round(p.total / p.days);
+                        return p;
+                    },
+                    function () {
+                        return {days: 0, total: 0, avg: 0};
+                    }
+            );
+
+            var gainOrLoss = ndx.dimension(function (d) {
+                return +d.open > +d.close ? "Loss" : "Gain";
+            });
+            var gainOrLossGroup = gainOrLoss.group();
+
+            var fluctuation = ndx.dimension(function (d) {
+                return Math.round((d.close - d.open) / d.open * 100);
+            });
+            var fluctuationGroup = fluctuation.group();
+
+            var quarter = ndx.dimension(function (d) {
+                var month = d.dd.getMonth();
+                if (month <= 3)
+                    return "Q1";
+                else if (month > 3 && month <= 5)
+                    return "Q2";
+                else if (month > 5 && month <= 7)
+                    return "Q3";
+                else
+                    return "Q4";
+            });
+            var quarterGroup = quarter.group().reduceSum(function (d) {
+                return d.volume;
+            });
+
+            var dayOfWeek = ndx.dimension(function (d) {
+                var day = d.dd.getDay();
+                switch (day) {
+                    case 0:
+                        return "0.Sun";
+                    case 1:
+                        return "1.Mon";
+                    case 2:
+                        return "2.Tue";
+                    case 3:
+                        return "3.Wed";
+                    case 4:
+                        return "4.Thu";
+                    case 5:
+                        return "5.Fri";
+                    case 6:
+                        return "6.Sat";
+                }
+            });
+            var dayOfWeekGroup = dayOfWeek.group();
+
+            gainOrLossChart.width(180)
+                    .height(180)
+                    .radius(80)
+                    .dimension(gainOrLoss)
+                    .group(gainOrLossGroup)
+                    .label(function (d) {
+                        if(gainOrLossChart.hasFilter() && !gainOrLossChart.hasFilter(d.data.key))
+                            return d.data.key + "(0%)";
+                        return d.data.key + "(" + Math.floor(d.data.value / all.value() * 100) + "%)";
+                    });
+
+            quarterChart.width(180)
+                    .height(180)
+                    .radius(80)
+                    .innerRadius(30)
+                    .dimension(quarter)
+                    .group(quarterGroup);
+
+            dayOfWeekChart.width(180)
+                .height(180)
+                .margins({top: 20, left: 10, right: 10, bottom: 20})
+                .group(dayOfWeekGroup)
+                .dimension(dayOfWeek)
+                .colors(['#3182bd', '#6baed6', '#9ecae1', '#c6dbef', '#dadaeb'])
+                .label(function (d){
+                    return d.key.split(".")[1];
+                })
+                .title(function(d){return d.value;})
+                .elasticX(true)
+                .xAxis().ticks(4);
+
+            fluctuationChart.width(420)
+                    .height(180)
+                    .margins({top: 10, right: 50, bottom: 30, left: 40})
+                    .dimension(fluctuation)
+                    .group(fluctuationGroup)
+                    .elasticY(true)
+                    .centerBar(true)
+                    .gap(1)
+                    .round(dc.round.floor)
+                    .x(d3.scale.linear().domain([-25, 25]))
+                    .renderHorizontalGridLines(true)
+                    .filterPrinter(function (filters) {
+                        var filter = filters[0], s = "";
+                        s += numberFormat(filter[0]) + "% -> " + numberFormat(filter[1]) + "%";
+                        return s;
+                    })
+                    .xAxis()
+                    .tickFormat(function (v) {
+                        return v + "%";
+                    });
+
+            moveChart.width(990)
+                    .height(180)
+                    .transitionDuration(1000)
+                    .margins({top: 10, right: 50, bottom: 25, left: 40})
+                    .dimension(moveMonths)
+                    .group(indexAvgByMonthGroup)
+                    .valueAccessor(function (d) {
+                        return d.value.avg;
+                    })
+                    .mouseZoomable(true)
+                    .x(d3.time.scale().domain([new Date(1985, 0, 1), new Date(2012, 11, 31)]))
+                    .round(d3.time.month.round)
+                    .xUnits(d3.time.months)
+                    .elasticY(true)
+                    .renderHorizontalGridLines(true)
+                    .brushOn(false)
+                    .rangeChart(volumeChart)
+                    .compose([
+                        dc.lineChart(moveChart).group(indexAvgByMonthGroup)
+                                .valueAccessor(function (d) {
+                                    return d.value.avg;
+                                })
+                                .renderArea(true)
+                                .stack(monthlyMoveGroup, function (d) {
+                                    return d.value;
+                                })
+                                .title(function (d) {
+                                    var value = d.data.value.avg ? d.data.value.avg : d.data.value;
+                                    if (isNaN(value)) value = 0;
+                                    return dateFormat(d.data.key) + "\n" + numberFormat(value);
+                                })
+                    ])
+                    .xAxis();
+
+            volumeChart.width(990)
+                    .height(40)
+                    .margins({top: 0, right: 50, bottom: 20, left: 40})
+                    .dimension(moveMonths)
+                    .group(volumeByMonthGroup)
+                    .centerBar(true)
+                    .gap(1)
+                    .x(d3.time.scale().domain([new Date(1985, 0, 1), new Date(2012, 11, 31)]))
+                    .round(d3.time.month.round)
+                    .xUnits(d3.time.months);
+
+
+            dc.dataCount(".dc-data-count")
+                    .dimension(ndx)
+                    .group(all);
+
+            dc.renderAll();
+        }
+);
+</script>
+
+<div class="clearfix"></div>
+
+</body>
+</html>
