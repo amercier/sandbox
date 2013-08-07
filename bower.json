@@ -1,7 +1,7 @@
 {
   "name": "sandbox",
   "version": "0.1.0",
-  "devDependencies": {
+  "dependencies": {
     "qunit": "~1.11.0",
     "bootstrap": "~2.3.2",
     "q": "~0.9.4",
@@ -10,6 +10,8 @@
     "requirejs-domready": "~2.0.1",
     "angular": "~1.0.7",
     "dojo": "~1.9.0",
-    "d3": "~3.1.10"
+    "d3": "~3.1.10",
+    "dcjs": "~1.4.0",
+    "crossfilter": "~1.2.0"
   }
 }
