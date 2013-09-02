@@ -1,0 +1,230 @@
+/*
+ * All progress bars
+ * ------------------------
+ */
+
+progress.progress-styled
+{
+    /* Override the default appearence */
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+
+    /* Gets rid of the default border in Firefox and Opera. */
+    border: none;
+
+    /* Dimensions */
+    width: 100%;
+    height: 20px;
+}
+
+/*
+ * Indeterminate progress bars
+ * ---------------------------
+ */
+
+progress.progress-styled::-webkit-progress-bar
+{
+  background-image:
+    -webkit-linear-gradient(
+      135deg,
+      transparent    25%, rgba(0,0,0,.1) 25%,
+      rgba(0,0,0,.1) 50%, transparent    50%,
+      transparent    75%, rgba(0,0,0,.1) 75%,
+      rgba(0,0,0,.1)
+    ),
+    -webkit-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .2)),
+    -webkit-linear-gradient(left, #09c, #f44);
+  background-size: 36px 36px, 100% 100%, 100% 100%;
+
+  -webkit-animation: animate-stripes 5s linear infinite;
+}
+
+progress.progress-styled::-moz-progress-bar
+{
+  background-image:
+    -moz-linear-gradient(
+      135deg,
+      transparent    25%, rgba(0,0,0,.1) 25%,
+      rgba(0,0,0,.1) 50%, transparent    50%,
+      transparent    75%, rgba(0,0,0,.1) 75%,
+      rgba(0,0,0,.1)
+    ),
+    -moz-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .2)),
+    -moz-linear-gradient(left, #09c, #f44);
+  background-size: 36px 36px, 100% 100%, 100% 100%;
+
+  animation: animate-stripes 5s linear infinite;
+}
+
+/* =============================================================================
+ * Determinate progress bars
+ * =============================================================================
+ */
+
+progress.progress-styled[value]
+{
+  /* For IE10 only */
+  color: #690;
+
+  /* Firefox only (for container) */
+  background-image: none;
+  background-color: #eee;
+  border-radius: 2px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25) inset;
+}
+
+/*
+ * Webkit browsers only - Determinate progress bar container
+ * ---------------------------------------------------------
+ */
+
+progress.progress-styled[value]::-webkit-progress-bar
+{
+  background-image: none;
+  background-color: #eee;
+  border-radius: 2px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25) inset;
+
+  position: relative;
+}
+
+/*
+ * Webkit browsers only - Progress bar value
+ * -----------------------------------------
+ */
+
+progress.progress-styled[value]::-webkit-progress-value
+{
+    border-radius: 2px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+
+    position: relative;
+
+    -webkit-animation: animate-stripes 5s linear infinite;
+            animation: animate-stripes 5s linear infinite;
+}
+
+/*
+ * Webkit browsers only - CSS3 keyframe animations
+ * -----------------------------------------------
+ */
+
+@-webkit-keyframes animate-stripes { 100% { background-position: -100px 0px; } }
+        @keyframes animate-stripes { 100% { background-position: -100px 0px; } }
+
+/*
+ * Webkit browsers only - Pseudo elements
+ * --------------------------------------
+ */
+
+progress.progress-styled[value]::-webkit-progress-value:after
+{
+    content: '';
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+    right: 7px;
+    top: 7px;
+
+    border-radius: 100%;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+progress.progress-styled[value]::-webkit-progress-value:before
+{
+    position: absolute;
+    right: 0;
+    top: -125%;
+}
+
+/*
+ * Firefox only - Progress bar value
+ * ---------------------------------
+ */
+
+progress.progress-styled[value]::-moz-progress-bar
+{
+    border-radius: 2px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+
+    position: relative;
+}
+
+/*
+ * Skin
+ * -------------
+ */
+
+progress.progress-styled[value]::-webkit-progress-value
+{
+    background-image:
+         -webkit-linear-gradient( 135deg,
+                                  transparent,
+                                  transparent 33%,
+                                  rgba(0, 0, 0, .1) 33%,
+                                  rgba(0, 0, 0, .1) 66%,
+                                  transparent 66%),
+         -webkit-linear-gradient( top,
+                                  rgba(255, 255, 255, .25),
+                                  rgba(0, 0, 0, .2)),
+         -webkit-linear-gradient( left, #09c, #f44);
+}
+
+progress.progress-styled[value]::-moz-progress-bar
+{
+    background-image:
+         -moz-linear-gradient( 135deg,
+                               transparent,
+                               transparent 33%,
+                               rgba(0, 0, 0, .1) 33%,
+                               rgba(0, 0, 0, .1) 66%,
+                               transparent 66%),
+         -moz-linear-gradient( top,
+                               rgba(255, 255, 255, .25),
+                               rgba(0, 0, 0, .2)),
+         -moz-linear-gradient( left, #09c, #f44);
+}
+
+/* =============================================================================
+ * HTML Fallback Technique
+ * =============================================================================
+ */
+
+.progress-styled .progress-bar
+{
+    background-color: whiteSmoke;
+    border-radius: 2px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .25) inset;
+
+    height: 20px;
+    width: 100%;
+
+    position: relative;
+}
+
+.progress-styled .progress-bar span
+{
+    background-color: blue;
+    border-radius: 2px;
+
+    display: block;
+
+    height: 100%;
+    text-indent: -9999px;
+}
+
+.progress-styled p[data-value]
+{
+    position: relative;
+    line-height: 200%;
+    margin: 1.5em 0 0;
+}
+
+.progress-styled p[data-value]:after
+{
+    content: attr(data-value) "%";
+    position: absolute;
+    right: 0;
+}
