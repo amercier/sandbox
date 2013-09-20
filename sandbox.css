@@ -5,7 +5,7 @@
 	margin-right: auto;
 }
 
-.hero-unit {
+.jumbotron {
 	margin-top: 1em;
 }
 
@@ -28,4 +28,10 @@ li {
 
 #console:empty {
 	display: none;
+}
+
+.glyphicon {
+  font-size: 11px;
+  margin-right: 3px;
+  top: 0;
 }

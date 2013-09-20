@@ -3,24 +3,24 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Data Binding with AngularJS</title>
-		<link rel="stylesheet" href="../../lib/bootstrap/docs/assets/css/bootstrap.css" />
-		<link rel="stylesheet" href="../../lib/bootstrap/docs/assets/css/bootstrap-responsive.css" />
+		<link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap-theme.css" />
 		<link rel="stylesheet" href="../data-binding.css" />
 	</head>
 	<body>
 		<div class="container-fluid">
-		
+
 			<header class="row-fluid">
 				<div class="span12">
-					<div class="hero-unit">
+					<div class="jumbotron">
 						<h1>Data Bindings demo application</h1>
 						<p>Using AngularJS</p>
 					</div>
 				</div>
 			</header>
-		
+
 			<div class="row-fluid" data-ng-controller="NavigationController">
-			
+
 				<!-- Navigation
 				  ========================================================== -->
 				<nav class="well span3">
@@ -31,7 +31,7 @@
 						<li class="nav-header">Organizations</li>
 						<li data-ng-repeat="organization in organizations">
 							<a href="#" data-ng-click="showOrganizationView(organization)">
-								<i class="icon-cloud-org"></i> 
+								<i class="icon-cloud-org"></i>
 								{{organization.name}}
 							</a>
 							<ul class="nav nav-list">
@@ -46,21 +46,21 @@
 						</li>
 					</ul>
 				</nav>
-				
+
 				<!-- Main content
 				============================================================ -->
 				<div class="span9">
-				
+
 					<!-- Tabs -->
 					<ul id="mainTabs" class="nav nav-tabs" style="display:none">
 						<li class="active"><a href="#cloud"        data-toggle="tab">Cloud</a></li>
 						<li               ><a href="#organization" data-toggle="tab">Organization</a></li>
 						<li               ><a href="#network"      data-toggle="tab">Network</a></li>
 					</ul>
-					
+
 					<!-- Tab content -->
 					<div class="tab-content">
-					
+
 						<!-- Cloud
 						==================================================== -->
 						<section id="cloud" class="tab-pane fade in active" data-ng-controller="CloudController">
@@ -95,7 +95,7 @@
 								</tbody>
 							</table>
 						</section>
-						
+
 						<!-- Organization
 						==================================================== -->
 						<section id="organization" class="tab-pane fade in" data-ng-controller="OrganizationController">
@@ -129,27 +129,27 @@
 								</tbody>
 							</table>
 						</section>
-						
-						
-						
+
+
+
 						<section id="network" class="tab-pane fade in">
 							network
 						</section>
 					</div>
 				</div>
 			</div>
-		
+
 			<p class="row">
 				<a class="btn pull-right" href="..">« back</a>
 			</p>
 		</div>
-		
+
 		<script>
 			var require = {
 				paths: {
 					jquery   : '../../lib/jquery/jquery',
 					domReady : '../../lib/requirejs-domready/domReady',
-					angular  : '../../lib/angular/angular', 
+					angular  : '../../lib/angular/angular',
 					bootstrap: '../../lib/bootstrap/docs/assets/js/bootstrap'
 				},
 				shim: {
