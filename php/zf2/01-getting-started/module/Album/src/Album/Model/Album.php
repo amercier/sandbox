@@ -30,6 +30,8 @@ class Album implements InputFilterAwareInterface
     public $artist;
     public $title;
 
+    protected $inputFilter;
+
     /**
      * Our Album entity object is a simple PHP class. In order to work with
      * Zend\Db’s TableGateway class, we need to implement the exchangeArray()
