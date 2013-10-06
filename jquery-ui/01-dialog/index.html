@@ -1,42 +1,42 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<title>Sandbox / jQuery UI / Dialog</title>
-		<link rel="stylesheet" href="../../sandbox.css" />
-		<link rel="stylesheet" href="../css/jquery.ui.all.css" />
-	</head>
-	<body>
-		<h1>jQuery UI Dialog</h1>
-		
-		<h2>Remove + re-open issue</h2>
-		<p>
-			A bug appear while you do the following:
-		</p>
-		<ol>
-			<li>Create a dialog</li>
-			<li>Delete the original container of the dialog</li>
-			<li>Open the dialog</li>
-		</ol>
-		
-		<button id="dialog-delete-parent-issue">Run</button>
-		
-		<pre id="console"></pre>
-		
-		<script>
-			var require = {
-				paths: {
-					domReady: "../lib/domReady"
-				}
-			};
-		</script>
-		<script data-main="main.js" src="../../lib/require-jquery-2.1.0.js"></script>
-		<script id="dialog-template" type="text/template">
-			<form id="dialog-form">
-				<label>
-					Test:
-					<input />
-				</label>
-			</form>
-		</script>
-	</body>
+  <head>
+    <title>Sandbox / jQuery UI / Dialog</title>
+    <link rel="stylesheet" href="../../sandbox.css" />
+    <link rel="stylesheet" href="../css/jquery.ui.all.css" />
+  </head>
+  <body>
+    <h1>jQuery UI Dialog</h1>
+
+    <h2>Remove + re-open issue</h2>
+    <p>
+      A bug appear while you do the following:
+    </p>
+    <ol>
+      <li>Create a dialog</li>
+      <li>Delete the original container of the dialog</li>
+      <li>Open the dialog</li>
+    </ol>
+
+    <button id="dialog-delete-parent-issue">Run</button>
+
+    <pre id="console"></pre>
+
+    <script>
+      var require = {
+        paths: {
+          domReady: "../lib/domReady"
+        }
+      };
+    </script>
+    <script data-main="main.js" src="../../lib/require-jquery-2.1.0.js"></script>
+    <script id="dialog-template" type="text/template">
+      <form id="dialog-form">
+        <label>
+          Test:
+          <input />
+        </label>
+      </form>
+    </script>
+  </body>
 </html>

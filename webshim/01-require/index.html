@@ -1,47 +1,47 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<title>Webshim require</title>
-		<link rel="stylesheet" href="../../sandbox.css" />
-		<style>
-			.form-disabled {
-				color: #ccc;
-			}
-		</style>
-	</head>
-	<body>
-		<h1>Webshim require</h1>
-		
-		<button id="dynamic-run">Run</button>
-		
-		<pre id="console"></pre>
-		
-		<script>
-			var require = {
-				paths: {
-					jquery: '../../lib/jquery/jquery',
-					domReady: '../../lib/requirejs-domready/domReady'
-				}
-			}
-		</script>
-		<script data-main="main.js" src="../../lib/requirejs/require"></script>
-		<script id="dynamic-template" type="text/template">
-			<form id="dynamic-form">
-				<fieldset>
-					<legend>
-						<input id="dynamic-parent-enabled" type="checkbox" />
-						Enabled checkbox
-					</legend>
-					<div data-require="#dynamic-parent-enabled:checked:enabled">
-						<p>
-							<label>
-								Some text:
-								<input type="text" />
-							</label>
-						</p>
-					</div>
-				</fieldset>
-			</form>
-		</script>
-	</body>
+  <head>
+    <title>Webshim require</title>
+    <link rel="stylesheet" href="../../sandbox.css" />
+    <style>
+      .form-disabled {
+        color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Webshim require</h1>
+
+    <button id="dynamic-run">Run</button>
+
+    <pre id="console"></pre>
+
+    <script>
+      var require = {
+        paths: {
+          jquery: '../../lib/jquery/jquery',
+          domReady: '../../lib/requirejs-domready/domReady'
+        }
+      }
+    </script>
+    <script data-main="main.js" src="../../lib/requirejs/require"></script>
+    <script id="dynamic-template" type="text/template">
+      <form id="dynamic-form">
+        <fieldset>
+          <legend>
+            <input id="dynamic-parent-enabled" type="checkbox" />
+            Enabled checkbox
+          </legend>
+          <div data-require="#dynamic-parent-enabled:checked:enabled">
+            <p>
+              <label>
+                Some text:
+                <input type="text" />
+              </label>
+            </p>
+          </div>
+        </fieldset>
+      </form>
+    </script>
+  </body>
 </html>

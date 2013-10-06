@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<title>✰✰✰● The title ●✰✰✰</title>
-		<style>
+  <head>
+    <title>✰✰✰● The title ●✰✰✰</title>
+    <style>
 body { font-family: "Arial Unicode MS", Arial, sans-serif }
 #css-internal:before { content: '✰✰✰ '; }
 #css-internal:after  { content: ' ✰✰✰'; }
-		</style>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<h1>Charset</h1>
-		<h2>None</h2>
-		<ul id="list">
-			<li>✰✰✰ Inside HTML ✰✰✰</li>
-			<li id="css-internal">From embedded CSS</li>
-			<li id="css-external">From exernal CSS</li>
-			<li id="js-internal">From embedded JavaScript</li>
-			<li id="js-external">From exernal JavaScript</li>
-		</ul>
-		<script>
+    </style>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Charset</h1>
+    <h2>None</h2>
+    <ul id="list">
+      <li>✰✰✰ Inside HTML ✰✰✰</li>
+      <li id="css-internal">From embedded CSS</li>
+      <li id="css-external">From exernal CSS</li>
+      <li id="js-internal">From embedded JavaScript</li>
+      <li id="js-external">From exernal JavaScript</li>
+    </ul>
+    <script>
 document.getElementById('js-internal').innerHTML = '✰✰✰ ' + document.getElementById('js-internal').innerHTML + ' ✰✰✰';
-		</script>
-		<script src="script.js"></script>
-	</body>
+    </script>
+    <script src="script.js"></script>
+  </body>
 </html>
