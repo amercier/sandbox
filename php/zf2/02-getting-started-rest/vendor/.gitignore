@@ -1,0 +1,7 @@
+!.gitignore
+.composer
+composer
+phpunit
+symfony
+zendframework
+autoload.php
