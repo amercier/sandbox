@@ -1,0 +1,21 @@
+.Barchart .label {
+  font-size: 10px;
+}
+
+.Barchart .ylabels .tick line {
+  fill: none;
+  stroke: #222;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+
+.Barchart path.domain {
+  fill: none;
+  stroke: #222;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+
+.Barchart .bars rect.bar {
+  fill: #3f87c5;
+}
