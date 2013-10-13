@@ -1,0 +1,31 @@
+<polymer-element name="post-element"  attributes="post selected">
+  <template>
+
+    <style>
+      @host { :scope {display: block;} }
+    </style>
+
+    <div class="col-lg-4">
+      <template if="{{post.gsx$slug.$t === selected}}">
+        <h2>
+          <a href="#{{post.gsx$slug.$t}}">
+            {{post.gsx$title.$t  }}
+          </a>
+        </h2>
+        <p>By {{post.gsx$author.$t}}</p>
+        <p>{{post.gsx$content.$t}}</p>
+        <p>Published on: {{post.gsx$date.$t}}</p>
+        <small>Keywords: {{post.gsx$keywords.$t}}</small>
+      </template>
+    </div>
+
+  </template>
+  <script>
+    Polymer('post-element', {
+      created: function() { },
+      enteredView: function() { },
+      leftView: function() { },
+      attributeChanged: function(attrName, oldVal, newVal) { }
+    });
+  </script>
+</polymer-element>

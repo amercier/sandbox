@@ -1,0 +1,41 @@
+<link rel="import" href="post.html">
+<link rel="import" href="../bower_components/polymer-elements/polymer-jsonp/polymer-jsonp.html">
+<link rel="import" href="flatiron-director/flatiron-director.html">
+<polymer-element name="blog-element"  attributes="">
+  <template>
+    <style>
+      @host { :scope {display: block;} }
+    </style>
+
+    <div class="row">
+      <h1><a href="/#">My Polymer Blog</a></h1>
+      <flatiron-director route="{{route}}" autoHash></flatiron-director>
+
+      <!-- Table of contents -->
+      <h2>Posts</h2>
+      <ul>
+        <template repeat="{{post in posts.feed.entry}}">
+          <li><a href="#{{post.gsx$slug.$t}}">{{post.gsx$title.$t}}</a></li>
+        </template>
+      </ul>
+
+      <!-- Post content -->
+      <template repeat="{{post in posts.feed.entry}}">
+        <post-element post="{{post}}" selected="{{route}}"></post-element>
+      </template>
+    </div>
+
+      <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AqWU9Hnm5x3ydDhsVzBGWmhYRExuM3lUUEg1X3kxQUE/od6/public/values?alt=json-in-script&callback=" response="{{posts}}"></polymer-jsonp>
+
+  </template>
+  <script>
+    Polymer('blog-element', {
+      //applyAuthorStyles: true,
+      //resetStyleInheritance: true,
+      created: function() { },
+      enteredView: function() { },
+      leftView: function() { },
+      attributeChanged: function(attrName, oldVal, newVal) { }
+    });
+  </script>
+</polymer-element>
