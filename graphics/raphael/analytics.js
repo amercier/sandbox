@@ -20,7 +20,7 @@ $(function () {
   });
 });
 
-window.onload = function () {
+$(function() {
   function getAnchors(p1x, p1y, p2x, p2y, p3x, p3y) {
     var l1 = (p2x - p1x) / 2,
       l2 = (p3x - p2x) / 2,
@@ -139,4 +139,4 @@ window.onload = function () {
   label[0].toFront();
   label[1].toFront();
   blanket.toFront();
-};
+});
