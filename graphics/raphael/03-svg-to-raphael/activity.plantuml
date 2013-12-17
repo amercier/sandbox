@@ -1,0 +1,25 @@
+@startuml
+
+skinparam activity {
+  ArrowColor  #000000
+  BorderColor #000000
+  BackgroundColor #eef5f9/cee7f6
+  FontSize 13
+}
+
+start
+
+if (multiprocessor?) then (yes)
+  fork
+    :Treatment 1;
+  fork again
+    :Treatment 2;
+  end fork
+else (monoproc)
+  :Treatment 1;
+  :Treatment 2;
+endif
+
+stop
+
+@enduml
