@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sandbox / Problem solving / Sorting</title>
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap-theme.css" />
+    <link rel="stylesheet" href="../../sandbox.css" />
+  </head>
+  <body>
+    <div class="container-sandbox">
+
+      <!-- Header
+      ================================================================ -->
+      <header>
+        <div class="jumbotron">
+          <h1>Sorting</h1>
+        </div>
+      </header>
+
+      <!-- Breadcrumbs
+      ================================================================ -->
+      <ul class="breadcrumb">
+        <li>
+          <a href="../..">Sandbox</a>
+        </li>
+        <li>
+          <a href="..">Problem solving</a>
+        </li>
+        <li class="active">Sorting</li>
+      </ul>
+
+      <!-- Content
+      ================================================================ -->
+
+      <pre>
+function createArray(length, max) {
+  var data = [];
+  for (var i = 0; i < length; i++) {
+    data[i] = Math.round(max * Math.random());
+  }
+  return data;
+}</pre>
+      <pre>
+function swap (data, i, j) {
+  var tmp = data[j];
+  data[j] = data[i];
+  data[i] = tmp;
+}</pre>
+
+      <h2>Bubble sorting</h2>
+      <pre>
+function bubbleSort (data) {
+  for (var i = 0; i < data.length; i++) {
+    for (var j = 0; j < data.length - 1; j++) {
+      if (data[j] > data[j+1]) {
+        swap(data, j, j+1);
+      }
+    }
+  }
+}
+
+var data = createArray(100, 1000);
+bubbleSort(data);
+data;</pre>
+      <p>Complexity: O(n^2)</p>
+
+      <h2>Insertion sorting</h2>
+      <pre>
+function insertionSort (data) {
+  for (var i = 0; i < data.length; i++) {
+    var j = i;
+    while (j > 0 && data[i] < data[j-1]) {
+      j--;
+    }
+    for (var k = i; k > j; k--) {
+      swap(data, k, k-1);
+    }
+  }
+}
+
+var data = createArray(100, 1000);
+insertionSort(data);
+data;</pre>
+
+    </div>
+  </body>
+  <script src="../../lib/jquery/jquery.js"></script>
+</html>
