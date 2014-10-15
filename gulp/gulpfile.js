@@ -4,6 +4,7 @@ var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 var rename = require('gulp-rename');
 var cssmin = require('gulp-cssmin');
+var clean = require('gulp-clean');
 
 // uglify: {
 //   base: {
@@ -23,7 +24,7 @@ var cssmin = require('gulp-cssmin');
 //       ]
 //     }
 //   }
-gulp.task('uglify-base', function() {
+gulp.task('uglify-base', ['clean-js'], function() {
 
   gulp.src([
     'lib/foundation/js/foundation/foundation.js',
@@ -56,10 +57,11 @@ gulp.task('uglify-base', function() {
 //     }
 //   }
 // }
-gulp.task('sass-dev', function() {
+gulp.task('sass-dev', ['clean-css'], function() {
   gulp.src([
     'scss/app.scss',
-    'scss/typography.scss'
+    'scss/typography.scss',
+    'scss/subdir/test.scss'
   ]).pipe(sass({
       includePaths: ['lib/foundation/scss']
     }))
@@ -67,3 +69,13 @@ gulp.task('sass-dev', function() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('public/css/'));
 });
+
+gulp.task('clean-css', function() {
+  return gulp.src('public/css', { read: false }).pipe(clean());
+});
+
+gulp.task('clean-js', function() {
+  return gulp.src('public/js', { read: false }).pipe(clean());
+});
+
+gulp.task('dev', ['uglify-base', 'sass-dev']);
