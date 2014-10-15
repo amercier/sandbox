@@ -1,0 +1,6 @@
+{
+  "name": "sandbox-gulp",
+  "dependencies": {
+    "foundation": "5.*"
+  }
+}
